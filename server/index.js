@@ -5,6 +5,7 @@ import cors from 'cors';
 import authRouter from "./routes/authRoutes.js";
 import dashRouter from "./routes/dashboardRoutes.js";
 import prodRouter from "./routes/productsRoutes.js";
+import postRouter from "./routes/postsRoutes.js";
 import axios from 'axios';
 
 const app = express();
@@ -22,6 +23,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/ecommerce')
 app.use('/auth', authRouter);
 app.use('/dash', dashRouter);
 app.use('/prod', prodRouter);
+app.use('/post', postRouter);
 
 app.get('/coin-gecko', async (req, res) => {
     try {

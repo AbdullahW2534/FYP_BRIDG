@@ -1,11 +1,11 @@
 import express from 'express';
 import productsModel from '../models/Images.js';
 import ordersModel from '../models/Order.js';
+import categorysModel from '../models/Categories.js';
 import multer from "multer";
 import path from "path";
 
 const router = express.Router();
-
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'public/Images')
@@ -20,8 +20,8 @@ const upload = multer({
 });
 
 router.post('/uploadProducts', upload.single('file'), (req, res) => {
-    console.log("Request : ", req.body);
-    productsModel.create({ productName: req.body.productName, productPrice: req.body.productPrice, productCategory: req.body.productCategory, image: req.file.filename })
+    // console.log("Request : ", req.body);
+    productsModel.create({ productName: req.body.productName, productPrice: req.body.productPrice, productCategory: req.body.productCategory,productQuantity:req.body.productQuantity,productColors:req.body.productColors,productSizes:req.body.productSizes, image: req.file.filename })
         .then(result => res.json(result))
         .catch(err => console.log(err))
 });
@@ -71,10 +71,46 @@ router.delete('/deleteProduct/:productId', (req, res) => {
 });
 
 router.post('/order',upload.none(), (req, res) => {
-    ordersModel.create({ productName: req.body.productName, productPrice: req.body.productPrice, customerName: req.body.customerName,quantity: req.body.quantity })
-        .then(result => res.json(result))
+    console.log("Order",req.body);
+    ordersModel.create({ productName: req.body.productName, productPrice: req.body.productPrice, customerName: req.body.customerName,productColor: req.body.productColor,productSize: req.body.productSize,quantity: req.body.quantity,email:req.body.email})
+        .then(result => {
+            console.log("Order server : ",result);
+            res.json(result)})
         .catch(err => console.log(err))
 });
 
+router.get('/getOrders/:sessionUser', (req, res) => {
+    const email = req.params.sessionUser;
+    // console.log("Server : ", email);
+    if (!email) {
+        return res.status(400).json({ message: 'Email is required' });
+    }
+    
+    ordersModel.find({ email: email })
+        .then(orderDetail => res.json(orderDetail))
+        .catch(error => {
+            console.error('Error Fetching Order:', error);
+            res.status(500).json({ message: 'Internal server error' });
+        });
+});
+router.get('/getOrderByID/:trackingID', (req, res) => {
+    const trackingID = req.params.trackingID;
+    console.log("Server : ", trackingID);
+    ordersModel.find({ _id: trackingID })
+        .then(orderDetail => res.json(orderDetail))
+        .catch(error => {
+            console.error('Error Fetching Order:', error);
+            res.status(500).json({ message: 'Internal server error' });
+        });
+});
+
+
+
+router.post('/uploadCategory',upload.none(),(req, res) => {
+    // console.log(req.body);
+    categorysModel.create({ categoryName: req.body.categoryName})
+        .then(result => res.json(result))
+        .catch(err => console.log(err))
+});
 
 export default router;

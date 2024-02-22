@@ -32,9 +32,9 @@ function Sidebar() {
                     <Unicons.UilShip  width={25} height={25} className="text-gray-500 mr-4" />
                     SHIPMENTS
                 </a>
-                <a href="/" className='w-full pl-7 py-2 text-sm hover:bg-gray-200 flex justify-start  items-center'>
+                <a href="/adminportal/posts" className='w-full pl-7 py-2 text-sm hover:bg-gray-200 flex justify-start  items-center'>
                     <Unicons.UilWallet  width={25} height={25} className="text-gray-500 mr-4" />
-                    WALLET
+                    POSTS
                 </a>
                 <a href="/" className='w-full pl-7 py-2 text-sm hover:bg-gray-200 flex justify-start  items-center'>
                     <Unicons.UilUsersAlt   width={25} height={25} className="text-gray-500 mr-4" />
