@@ -1,6 +1,7 @@
 import React from 'react'
 
 function TrackImg({ status }) {
+
     return (
         <>
             {
@@ -30,7 +31,6 @@ function TrackImg({ status }) {
                                 <h2 className='mb-2 font-medium text-gray-400'>
                                     <span className='font-medium mr-3 text-black'>Order Status :  </span>{data.orderStatus}
                                 </h2>
-
                             </div>
                         </div>
                     </>
