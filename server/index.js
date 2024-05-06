@@ -21,7 +21,7 @@ app.use(cors({
 app.use(express.static('public'))
 app.use(cookieParser())
 
-mongoose.connect('mongodb+srv://muhammadbilal94390:bilalkhan94390@cluster0.ibfi1yh.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0');
+mongoose.connect('mongodb+srv://muhammadbilal94390:bilalkhan94390@cluster0.ibfi1yh.mongodb.net/testEcom?retryWrites=true&w=majority&appName=Cluster0');
 
 app.use('/auth', authRouter);
 app.use('/dash', dashRouter);
