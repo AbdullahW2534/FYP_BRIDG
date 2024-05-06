@@ -54,7 +54,7 @@ export default function OrderForm({ selectedProduct, closeForm, setShowNotificat
                 console.log(error);
             }
         };
-        axios.get('https://mern-marketplace-dapp.vercel.app/auth/getMail')
+        axios.get('https://server94390.vercel.app/auth/getMail')
             .then(res => {
                 setSessionuser(res.data.email);
                 return(res.data.email);
@@ -67,7 +67,7 @@ export default function OrderForm({ selectedProduct, closeForm, setShowNotificat
     // Update the fetchEthereumPrice function
     async function fetchEthereumPrice() {
         try {
-            const response = await axios.get('https://mern-marketplace-dapp.vercel.app/coin-gecko');
+            const response = await axios.get('https://server94390.vercel.app/coin-gecko');
             return response.data.ethereum.usd;
         } catch (error) {
             console.error('Error fetching Ethereum price:', error);
@@ -114,7 +114,7 @@ export default function OrderForm({ selectedProduct, closeForm, setShowNotificat
             // const transaction = await contract.pay(0, customerName, productName, amount);
             // setLoading(true);
             // const trans = await transaction.wait();
-            axios.post('https://mern-marketplace-dapp.vercel.app/prod/order', formData)
+            axios.post('https://server94390.vercel.app/prod/order', formData)
                 .then(res => {
                     // console.log("Order Place : ",res.data._id);
                     closeForm();
@@ -143,7 +143,7 @@ export default function OrderForm({ selectedProduct, closeForm, setShowNotificat
     };
 
     useEffect(() => {
-        axios.get('https://mern-marketplace-dapp.vercel.app/prod/getProducts')
+        axios.get('https://server94390.vercel.app/prod/getProducts')
             .then(res => {
                 setProducts(res.data)
             })

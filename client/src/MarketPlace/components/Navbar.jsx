@@ -13,7 +13,7 @@ export default function Navbar({ backgroundImage, heading }) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    axios.post('https://mern-marketplace-dapp.vercel.app/auth/logout')
+    axios.post('https://server94390.vercel.app/auth/logout')
       .then(() => {
         dispatch(addUser(""));
         navigate('/');
@@ -23,10 +23,10 @@ export default function Navbar({ backgroundImage, heading }) {
 
   useEffect(() => {
     axios.defaults.withCredentials = true;
-    axios.get('https://mern-marketplace-dapp.vercel.app/auth/getMail')
+    axios.get('https://server94390.vercel.app/auth/getMail')
       .then(res => {
         const email = res.data.email;
-        axios.get('https://mern-marketplace-dapp.vercel.app/auth/getUserName', {
+        axios.get('https://server94390.vercel.app/auth/getUserName', {
           params: {
             email: email
           }

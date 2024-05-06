@@ -20,7 +20,7 @@ export default function Pricing() {
     const [checkedStates, setCheckedStates] = useState([]);
 
     useEffect(() => {
-        axios.get('https://mern-marketplace-dapp.vercel.app/prod/getProducts')
+        axios.get('https://server94390.vercel.app/prod/getProducts')
             .then(res => {
                 setProductsData(res.data);
                 // Initialize checked states for each product

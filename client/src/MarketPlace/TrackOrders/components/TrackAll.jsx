@@ -7,7 +7,7 @@ function TrackAll({ post }) {
 
     useEffect(() => {
         axios.defaults.withCredentials = true;
-        axios.get('https://mern-marketplace-dapp.vercel.app/auth/getMail')
+        axios.get('https://server94390.vercel.app/auth/getMail')
             .then(res => {
                 const userEmail = res.data.email;
                 console.log("Mail : ", userEmail);
@@ -20,7 +20,7 @@ function TrackAll({ post }) {
         console.log("If User : ", sessionUser);
         if (sessionUser) {
             console.log("fetch");
-            axios.get(`https://mern-marketplace-dapp.vercel.app/prod/getOrders/${sessionUser}`)
+            axios.get(`https://server94390.vercel.app/prod/getOrders/${sessionUser}`)
                 .then(res => {
                     console.log("Res Get : ", res.data);
                     setPosts(res.data);

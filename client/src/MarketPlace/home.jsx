@@ -16,7 +16,7 @@ import Partners from './components/Partners';
 export default function Home() {
     const dispatch = useDispatch();
     useEffect(() => {
-        axios.get('https://mern-marketplace-dapp.vercel.app/prod/getProducts')
+        axios.get('https://server94390.vercel.app/prod/getProducts')
             .then(res => {
                 dispatch(addProducts(res.data));
                 // setProducts(res.data)

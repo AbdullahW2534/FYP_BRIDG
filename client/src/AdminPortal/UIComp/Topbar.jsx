@@ -9,7 +9,7 @@ function Topbar() {
     const userName = useSelector(state => state.user);
 
     const handleLogout = () => {
-        axios.post('https://mern-marketplace-dapp.vercel.app/auth/logout')
+        axios.post('https://server94390.vercel.app/auth/logout')
             .then(() => {
                 navigate('/');
             })

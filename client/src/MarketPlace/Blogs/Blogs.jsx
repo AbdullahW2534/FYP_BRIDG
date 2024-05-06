@@ -9,7 +9,7 @@ import Footer from '../components/Footer';
 export default function Blogs() {
     const [postsData, setPosts] = useState([]);
     useEffect(() => {
-        axios.get('https://mern-marketplace-dapp.vercel.app/post/getPosts')
+        axios.get('https://server94390.vercel.app/post/getPosts')
             .then(res => {
                 setPosts(res.data);
             })

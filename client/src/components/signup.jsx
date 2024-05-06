@@ -13,7 +13,7 @@ export default function Signup() {
 
     const handleSubmit = (event) =>{
         event.preventDefault();
-        axios.post('https://mern-marketplace-dapp.vercel.app/auth/register',{name,email,password})
+        axios.post('https://server94390.vercel.app/auth/register',{name,email,password})
         .then(res =>{
             navigate('/signin');
         }).catch(err => console.log(err))
