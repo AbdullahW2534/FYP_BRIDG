@@ -6,6 +6,7 @@ function TrackAll({ post }) {
     const [sessionUser, setSessionuser] = useState('');
 
     useEffect(() => {
+        axios.defaults.withCredentials = true;
         axios.get('https://mern-marketplace-dapp.vercel.app/auth/getMail')
             .then(res => {
                 const userEmail = res.data.email;
