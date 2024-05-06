@@ -13,7 +13,7 @@ export default function AddProducts() {
     const handleUpload = (event) => {
         event.preventDefault();
         let formData = new FormData(event.target);
-        axios.post('http://localhost:3001/prod/uploadProducts', formData)
+        axios.post('https://mern-marketplace-dapp.vercel.app/prod/uploadProducts', formData)
             .then(res => {
                 event.target.reset();
                 setNotification('Product Added'); // Set the notification message

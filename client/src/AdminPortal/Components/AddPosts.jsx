@@ -14,7 +14,7 @@ export default function AddPosts() {
         event.preventDefault();
         let formData = new FormData(event.target);
         console.log(formData);
-        axios.post('http://localhost:3001/post/uploadPosts', formData)
+        axios.post('https://mern-marketplace-dapp.vercel.app/post/uploadPosts', formData)
             .then(res => {
                 event.target.reset();
                 setNotification('Post Added'); // Set the notification message

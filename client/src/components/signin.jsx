@@ -16,7 +16,7 @@ export default function SignIn() {
     axios.defaults.withCredentials = true;
     const handleSubmit = (event) =>{
         event.preventDefault();
-        axios.post('http://localhost:3001/auth/login',{email,password})
+        axios.post('https://mern-marketplace-dapp.vercel.app/auth/login',{email,password})
         .then(res =>{
             const{Status,role,name} = res.data;
             dispatch(addUser(name));

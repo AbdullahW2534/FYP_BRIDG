@@ -14,7 +14,7 @@ export default function AddCategory() {
         event.preventDefault();
         let formData = new FormData(event.target);
         console.log(formData);
-        axios.post('http://localhost:3001/prod/uploadCategory', formData)
+        axios.post('https://mern-marketplace-dapp.vercel.app/uploadCategory', formData)
             .then(res => {
                 event.target.reset();
                 setNotification('Category Added'); // Set the notification message

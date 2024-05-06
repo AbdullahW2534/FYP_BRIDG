@@ -114,7 +114,7 @@ export default function OrderForm({ selectedProduct, closeForm, setShowNotificat
             // const transaction = await contract.pay(0, customerName, productName, amount);
             // setLoading(true);
             // const trans = await transaction.wait();
-            axios.post('http://localhost:3001/prod/order', formData)
+            axios.post('https://mern-marketplace-dapp.vercel.app/prod/order', formData)
                 .then(res => {
                     // console.log("Order Place : ",res.data._id);
                     closeForm();
