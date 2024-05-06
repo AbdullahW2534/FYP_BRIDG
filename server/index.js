@@ -11,14 +11,14 @@ import axios from 'axios';
 const app = express();
 app.use(express.json())
 app.use(cors({
-    origin: ['http://localhost:5173'],
+    origin: ['http://localhost:5173','https://mern-marketplace-dapp.vercel.app/'],
     methods: ['GET', 'POST','PUT'],
     credentials: true
 }))
 app.use(express.static('public'))
 app.use(cookieParser())
 
-mongoose.connect('mongodb://127.0.0.1:27017/ecommerce')
+mongoose.connect('mongodb+srv://muhammadbilal94390:bilalkhan94390@cluster0.mn9gav4.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0')
 
 app.use('/auth', authRouter);
 app.use('/dash', dashRouter);
