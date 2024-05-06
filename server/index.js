@@ -26,7 +26,7 @@ app.use('/prod', prodRouter);
 app.use('/post', postRouter);
 app.get("/",(req,res) => {
         res.json("hello);
-})
+});
 app.get('/coin-gecko', async (req, res) => {
     try {
       const response = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd');
