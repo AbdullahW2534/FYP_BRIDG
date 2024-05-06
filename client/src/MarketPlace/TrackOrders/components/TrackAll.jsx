@@ -20,7 +20,7 @@ function TrackAll({ post }) {
         console.log("If User : ", sessionUser);
         if (sessionUser) {
             console.log("fetch");
-            axios.get(`http://localhost:3001/prod/getOrders/${sessionUser}`)
+            axios.get(`https://mern-marketplace-dapp.vercel.app/prod/getOrders/${sessionUser}`)
                 .then(res => {
                     console.log("Res Get : ", res.data);
                     setPosts(res.data);
