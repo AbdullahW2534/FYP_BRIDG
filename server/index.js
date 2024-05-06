@@ -18,15 +18,12 @@ app.use(cors({
 app.use(express.static('public'))
 app.use(cookieParser())
 
-mongoose.connect('mongodb+srv://muhammadbilal94390:bilalkhan94390@cluster0.mn9gav4.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0');
+mongoose.connect('mongodb+srv://muhammadbilal94390:bilalkhan94390@cluster0.ibfi1yh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
 
 app.use('/auth', authRouter);
 app.use('/dash', dashRouter);
 app.use('/prod', prodRouter);
 app.use('/post', postRouter);
-app.get("/",(req,res) => {
-        res.json("hello);
-});
 app.get('/coin-gecko', async (req, res) => {
     try {
       const response = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd');
