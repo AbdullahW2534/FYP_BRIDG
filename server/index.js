@@ -10,11 +10,14 @@ import axios from 'axios';
 
 const app = express();
 app.use(express.json())
+
 app.use(cors({
-    origin: ['https://mern-marketplace-dapp-frontend.vercel.app','https://mern-marketplace-dapp-frontend-bilal202202001s-projects.vercel.app','https://mern-marketplace-dapp-front-git-dca4ab-bilal202202001s-projects.vercel.app'],
-    methods: ['GET', 'POST','PUT'],
-    credentials: true
-}))
+  origin: 'https://mern-marketplace-dapp-frontend.vercel.app',
+  methods: ['GET', 'POST', 'PUT'],
+  credentials: true
+
+}));
+
 app.use(express.static('public'))
 app.use(cookieParser())
 
@@ -25,18 +28,18 @@ app.use('/dash', dashRouter);
 app.use('/prod', prodRouter);
 app.use('/post', postRouter);
 app.get('/coin-gecko', async (req, res) => {
-    try {
-      const response = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd');
-      res.json(response.data);
-    } catch (error) {
-      console.error('Error fetching Ethereum price:', error);
-      res.status(500).json({ error: 'Internal server error' });
-    }
-  });
-  
+  try {
+    const response = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd');
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error fetching Ethereum price:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 
 app.listen(3001, () => {
-    console.log("Server is Running")
+  console.log("Server is Running")
 })
 
 
