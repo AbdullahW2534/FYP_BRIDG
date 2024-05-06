@@ -11,7 +11,7 @@ import axios from 'axios';
 const app = express();
 app.use(express.json())
 app.use(cors({
-    origin: ['https://mern-marketplace-dapp-frontend.vercel.app','https://mern-marketplace-dapp-frontend-bilal202202001s-projects.vercel.app'],
+    origin: ['https://mern-marketplace-dapp-frontend.vercel.app','https://mern-marketplace-dapp-frontend-bilal202202001s-projects.vercel.app','https://mern-marketplace-dapp-front-git-dca4ab-bilal202202001s-projects.vercel.app'],
     methods: ['GET', 'POST','PUT'],
     credentials: true
 }))
