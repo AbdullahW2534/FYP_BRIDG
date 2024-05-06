@@ -6,7 +6,7 @@ import ProductCard from './ProductCard';
 export default function ProductsPalet() {
   const [productsdata, setProducts] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:3001/prod/getProducts')
+    axios.get('https://mern-marketplace-dapp.vercel.app/prod/getProducts')
       .then(res => {
         setProducts(res.data);
       })

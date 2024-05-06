@@ -8,7 +8,7 @@ import BlogsPalet from '../Blogs/components/BlogsPalet';
 export default function HomeBlogs() {
     const [postsData, setPosts] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:3001/post/getPosts')
+        axios.get('https://mern-marketplace-dapp.vercel.app/post/getPosts')
             .then(res => {
                 setPosts(res.data);
             })

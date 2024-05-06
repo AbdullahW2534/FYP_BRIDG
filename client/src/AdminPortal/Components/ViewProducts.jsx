@@ -10,7 +10,7 @@ function ViewProducts() {
     const [productsdata, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:3001/prod/getProducts')
+        axios.get('https://mern-marketplace-dapp.vercel.app/prod/getProducts')
             .then(res => {
                 setProducts(res.data)
             })
@@ -30,7 +30,7 @@ function ViewProducts() {
         const updatedProductData = new FormData(event.target);
         const productId = updatedProductData.get('_id');
 
-        axios.put(`http://localhost:3001/prod/editProduct/${productId}`, updatedProductData)
+        axios.put(`hhttps://mern-marketplace-dapp.vercel.app/prod/editProduct/${productId}`, updatedProductData)
             .then(res => {
                 console.log(res.data);
                 setNotification('Product updated'); // Set the notification message
