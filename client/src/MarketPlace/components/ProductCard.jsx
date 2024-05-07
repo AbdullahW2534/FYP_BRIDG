@@ -11,7 +11,7 @@ function ProductCard({ productsdata }) {
     }
     return (
         <div className='w-full md:w-5/6 flex flex-col justify-center items-start shadow-lg ' >
-            <img src={`http://localhost:3001/Images/${productsdata.image}`} className='w-full h-64 ' alt={`img`} />
+            <img src={`${productsdata.image}`} className='w-full h-64 ' alt={`img`} />
             <h2 className='w-full text-center font-medium mt-1'>{productsdata.productName}</h2>
             <h2 className='w-full text-center text-xs mt-1'>Hurry Up..! only <span className='text-sm font-medium text-red-600'>{productsdata.productQuantity}</span> remaining</h2>
             <div className='flex justify-end items-center w-full pt-1 '>

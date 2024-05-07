@@ -95,7 +95,7 @@ function ViewProducts() {
                     {productsdata.map((product, index) => (
                         <tr key={index} className='bg-white border-b border-gray-200'>
                             <td className='px-4 py-2'>
-                                <img src={`http://localhost:3001/Images/${product.image}`} className='w-4/5 h-36 rounded-lg' alt={`Product ${index}`} />
+                                <img src={`${product.image}`} className='w-4/5 h-36 rounded-lg' alt={`Product ${index}`} />
                             </td>
                             <td className='px-4 py-2'>{product.productName}</td>
                             <td className='px-4 py-2'>{product.productPrice} ($)</td>
