@@ -20,7 +20,6 @@ const upload = multer({
 });
 
 router.post('/uploadProducts', upload.single('file'), (req, res) => {
-    // console.log("Request : ", req.body);
     productsModel.create({ productName: req.body.productName, productPrice: req.body.productPrice, productCategory: req.body.productCategory,productQuantity:req.body.productQuantity,productColors:req.body.productColors,productSizes:req.body.productSizes, image: req.file.filename })
         .then(result => res.json(result))
         .catch(err => console.log(err))
@@ -106,8 +105,7 @@ router.get('/getOrderByID/:trackingID', (req, res) => {
 
 
 
-router.post('/uploadCategory',upload.none(),(req, res) => {
-    // console.log(req.body);
+router.post('/uploadCategory',(req, res) => {
     categorysModel.create({ categoryName: req.body.categoryName})
         .then(result => res.json(result))
         .catch(err => console.log(err))
