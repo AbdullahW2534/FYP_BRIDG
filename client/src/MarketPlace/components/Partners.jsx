@@ -4,7 +4,7 @@ import PartnerPalet from './PartnerPalet';
 function Partners() {
     return (
         <div className='flex flex-col justify-center items-center w-full py-20'>
-            <div className='w-full h-3/5 bg-[url(bg10.jpg)] bg-cover opacity-10 absolute'>
+            <div className='w-full h-3/5 bg-[url(./assets/images/bg10.jpg)] bg-cover opacity-10 absolute'>
 
             </div>
             <h2 className='w-full text-center text-3xl font-medium text-white my-4 bg-red-500 '>
