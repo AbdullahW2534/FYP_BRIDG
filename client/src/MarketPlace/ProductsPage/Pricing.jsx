@@ -49,7 +49,7 @@ export default function Pricing() {
     return (
         <>
             <div className='w-full flex flex-col justify-center items-center'>
-                <Navbar backgroundImage="bg-[url('./bg4.jpg')]" heading={'PRODUCTS'} />
+                <Navbar backgroundImage="bg-[url('./assets/images/bg4.jpg')]" heading={'PRODUCTS'} />
                 <Heading heading={'Special Offers'} mainHeading={'Latest Drops'} />
                 <div className='w-full px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7 py-10 justify-center items-center'>
                     {productsData.map((product, index) => (

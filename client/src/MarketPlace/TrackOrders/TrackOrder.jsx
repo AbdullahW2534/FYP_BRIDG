@@ -12,7 +12,7 @@ export default function TrackOrders() {
     return (
         <>
             <div className='w-full flex flex-col justify-center items-center'>
-                <Navbar backgroundImage="bg-[url('./bg9.jpg')]" heading={'TRACKING'} />
+                <Navbar backgroundImage="bg-[url('./assets/images/bg9.jpg')]" heading={'TRACKING'} />
                 <div className='w-full flex flex-col justify-center items-center'>
                     <Heading heading={'GET IN TOUCH'} mainHeading={'TRACK THE ONE'} />
                     <TrackOne />
