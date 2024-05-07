@@ -4,22 +4,24 @@ import * as Unicons from '@iconscout/react-unicons';
 
 
 export default function AddCategory() {
-    const [showForm, setShowForm] = useState(false); // State to track form visibility
+    const [showForm, setShowForm] = useState(false);
     const [notification, setNotification] = useState(null);
     const handleToggleForm = () => {
-        setShowForm(!showForm); // Toggle the value of showForm
+        setShowForm(!showForm); 
     };
 
     const handleUpload = (event) => {
-        event.preventDefault();
         let formData = new FormData(event.target);
-        console.log(formData);
-        axios.post('https://server94390.vercel.app//uploadCategory', formData)
+        const data = {};
+        for (const [key, value] of formData.entries()) {
+            data[key] = value;
+        }
+        axios.post('https://server94390.vercel.app//uploadCategory', data)
             .then(res => {
                 event.target.reset();
-                setNotification('Category Added'); // Set the notification message
+                setNotification('Category Added'); 
                 setTimeout(() => {
-                    setNotification(null); // Clear the notification after 10 seconds
+                    setNotification(null); 
                 }, 10000);
                 console.log(res)
             })

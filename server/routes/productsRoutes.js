@@ -100,9 +100,9 @@ router.get('/getOrderByID/:trackingID', (req, res) => {
 
 
 
-router.post('/uploadCategory',upload.none(),(req, res) => {
-    // console.log(req.body);
-    categorysModel.create({ categoryName: req.body.categoryName})
+router.post('/uploadCategory', (req,res) => {
+    console.log(req.body);
+    categorysModel.create({ categoryName: req.body.categoryName })
         .then(result => res.json(result))
         .catch(err => console.log(err))
 });
