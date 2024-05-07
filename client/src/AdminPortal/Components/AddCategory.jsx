@@ -16,7 +16,7 @@ export default function AddCategory() {
         for (const [key, value] of formData.entries()) {
             data[key] = value;
         }
-        axios.post('https://server94390.vercel.app//uploadCategory', data)
+        axios.post('https://server94390.vercel.app/uploadCategory', data)
             .then(res => {
                 event.target.reset();
                 setNotification('Category Added'); 
