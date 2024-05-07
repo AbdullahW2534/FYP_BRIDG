@@ -27,7 +27,7 @@ export default function Home() {
     return (
         <>
             <div className='w-full h-auto flex flex-col justify-start items-center'>
-                <Navbar backgroundImage="bg-[url('./bg.jpg')]"  heading={'SOLESTYLE'} />
+                <Navbar backgroundImage="bg-[url('./assets/images/bg.jpg')]"  heading={'SOLESTYLE'} />
                 <Outlets/>
                 <ProductsPalet/>
                 <Policy/>
