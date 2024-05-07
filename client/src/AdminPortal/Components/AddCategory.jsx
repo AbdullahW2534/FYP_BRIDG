@@ -11,6 +11,7 @@ export default function AddCategory() {
     };
 
     const handleUpload = (event) => {
+        event.preventDefault();
         let formData = new FormData(event.target);
         const data = {};
         for (const [key, value] of formData.entries()) {
