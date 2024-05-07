@@ -18,13 +18,15 @@ router.post('/uploadProducts', upload.single('file'),async (req, res) => {
         .catch(err => console.log(err))
 });
 
-router.put('/editProduct/:productId', upload.single('file'), (req, res) => {
+router.put('/editProduct/:productId', upload.single('file'), async (req, res) => {
     const productId = req.params.productId;
+    const result = await cloudinary.uploader.upload(req.file.path);
+    const imageUrl = result.secure_url;
     productsModel.findByIdAndUpdate(productId, {
         productName: req.body.productName,
         productPrice: req.body.productPrice,
         productCategory: req.body.productCategory,
-        image: req.file.filename
+        image: imageUrl
     }, { new: true })
         .then(updatedProduct => {
             if (!updatedProduct) {

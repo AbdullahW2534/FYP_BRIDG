@@ -54,7 +54,7 @@ export default function Pricing() {
                 <div className='w-full px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7 py-10 justify-center items-center'>
                     {productsData.map((product, index) => (
                         <div className='flex flex-col justify-center items-start  rounded-t-lg shadow-lg pb-1' key={index}>
-                            <img src={`http://localhost:3001/Images/${product.image}`} className='w-full h-48 rounded-t-lg' alt={`img${index}`} />
+                            <img src={`${product.image }`} className='w-full h-48 rounded-t-lg' alt={`img${index}`} />
                             <h2 className='w-full text-center bg-slate-950 text-white mt-1'>{product.productName}</h2>
                             <h2 className='w-full text-start text-xs mt-1'><span className='font-medium'>Sizes :</span> {product.productSizes}</h2>
                             <h2 className='w-full text-start text-xs mt-1'><span className='font-medium'>Colors : </span>{product.productColors}</h2>
