@@ -8,7 +8,7 @@ export default function Outlets() {
                 <Heading heading={'Official Stores'} mainHeading={'Functional Outlets'} />
                 <div className='flex flex-col sm:flex-row md:flex-row lg:flex-row justify-center items-center w-full h-3/5  p-10'>
                     <img
-                        src='./assets/images/bg.jpg'
+                        src='./bg.jpg'
                         className='image w-full h-48 rounded-lg'
                         alt='img'
                         data-aos="fade-up"
@@ -20,7 +20,7 @@ export default function Outlets() {
                         data-aos-anchor-placement="top-center"
                     />
                     <img
-                        src='./assets/images/bg4.jpg'
+                        src='./bg4.jpg'
                         className='image w-full h-68 rounded-lg '
                         alt='img'
                         data-aos="fade-up"
@@ -32,7 +32,7 @@ export default function Outlets() {
                         data-aos-anchor-placement="top-center"
                     />
                     <img
-                        src='./assets/images/bg6.jpg'
+                        src='./bg6.jpg'
                         className='image w-full h-48 rounded-lg  '
                         alt='img'
                         data-aos="fade-up"
