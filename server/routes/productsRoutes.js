@@ -2,26 +2,18 @@ import express from 'express';
 import productsModel from '../models/Images.js';
 import ordersModel from '../models/Order.js';
 import categorysModel from '../models/Categories.js';
-import multer from "multer";
-import path from "path";
+import cloudinary from "../utils/cloudinary.js";
+import upload from "../middleware/multer.js";
+
 
 const router = express.Router();
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public/Images')
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.originalname + "_" + Date.now() + path.extname(file.originalname))
-    }
-});
 
-const upload = multer({
-    storage: storage
-});
 
-router.post('/uploadProducts', upload.single('file'), (req, res) => {
-    // console.log("Request : ", req.body);
-    productsModel.create({ productName: req.body.productName, productPrice: req.body.productPrice, productCategory: req.body.productCategory,productQuantity:req.body.productQuantity,productColors:req.body.productColors,productSizes:req.body.productSizes, image: req.file.filename })
+router.post('/uploadProducts', upload.single('file'),async (req, res) => {
+
+    const result = await cloudinary.uploader.upload(req.file.path);
+    const imageUrl = result.secure_url;
+    productsModel.create({ productName: req.body.productName, productPrice: req.body.productPrice, productCategory: req.body.productCategory,productQuantity:req.body.productQuantity,productColors:req.body.productColors,productSizes:req.body.productSizes, image: imageUrl})
         .then(result => res.json(result))
         .catch(err => console.log(err))
 });
