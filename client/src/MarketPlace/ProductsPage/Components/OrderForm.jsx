@@ -48,7 +48,8 @@ export default function OrderForm({ selectedProduct, closeForm, setShowNotificat
                     setAccount(account[0]);
                     setState({ provider, signer, contract });
                 } else {
-                    alert("Please install metamask");
+                    closeForm();
+                    errorHandler('Metamask Not Installed');
                 }
             } catch (error) {
                 console.log(error);
