@@ -1,25 +1,15 @@
 import express from 'express';
 import postsModel from '../models/Posts.js'
-import multer from "multer";
-import path from "path";
+import cloudinary from "../utils/cloudinary.js";
+import upload from "../middleware/multer.js";
+
 
 const router = express.Router();
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public/Images')
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.originalname + "_" + Date.now() + path.extname(file.originalname))
-    }
-});
 
-const upload = multer({
-    storage: storage
-});
-
-router.post('/uploadPosts', upload.single('file'), (req, res) => {
-    // console.log("Request : ", req.body);
-    postsModel.create({heading : req.body.heading,auther: req.body.auther,content: req.body.content,image: req.file.filename  })
+router.post('/uploadPosts', upload.single('file'), async (req, res) => {
+    const result = await cloudinary.uploader.upload(req.file.path);
+    const imageUrl = result.secure_url;
+    postsModel.create({heading : req.body.heading,auther: req.body.auther,content: req.body.content,image: imageUrl })
         .then(result => res.json(result))
         .catch(err => console.log(err))
 });
