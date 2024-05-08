@@ -22,13 +22,6 @@ export default function Blogs() {
                 <div className='w-full flex flex-col justify-center items-center'>
                     <Heading heading={'FROM THE BLOGS'} mainHeading={'FASHIONS FOR YOU'} />
                     <div className='p-10 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-10 items-start justify-center text-black'
-                        data-aos="fade-in"
-                        data-aos-offset="100"
-                        data-aos-duration="1000"
-                        data-aos-easing="ease-in-out"
-                        data-aos-mirror="false"
-                        data-aos-once="false"
-                        data-aos-anchor-placement="center-bottom"
                     >
                         {postsData.map(post => {
                             return (
