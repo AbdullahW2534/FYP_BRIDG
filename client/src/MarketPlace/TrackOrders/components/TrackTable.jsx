@@ -3,7 +3,8 @@ import React from 'react';
 export default function TrackTable({ postsData }) {
     
     return (
-        <table className='w-full'>
+        <div className='w-full overflow-x-auto'>
+            <table className='w-full'>
                 <thead>
                     <tr>
                         <th className='px-4 py-2 bg-red-600 text-white font-medium rounded-tl-lg'>Customer Name</th>
@@ -29,5 +30,6 @@ export default function TrackTable({ postsData }) {
                     ))}
                 </tbody>
             </table>
+        </div>
     )
 }
