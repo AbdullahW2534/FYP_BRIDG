@@ -18,7 +18,7 @@ export default function BlogsPalet({ postsData }) {
 
     return (
         <div className='p-5 '>
-            <img src={`${postsData.image}`} className='w-full h-64 p-4' alt={`img`} />
+            <img src={`${postsData.image}`} className='w-full h-72 lg:h-[30rem]  lg:p-4' alt={`img`} />
             <h2 className='w-full text-center font-medium mb-1'>{postsData.heading}</h2>
             <h2 className='w-full flex justify-end items-center mt-1 text-gray-400 px-4  text-xs'><Unicons.UilPostStamp  width={16} className="text-yellow-500 ml-3 mr-1" />{postsData.auther}</h2>
             <h2 className="w-full  mt-1" style={ellipsisStyle}>
