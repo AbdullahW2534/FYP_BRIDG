@@ -9,7 +9,7 @@ export default function Outlets() {
                 <div className='flex flex-col sm:flex-row md:flex-row lg:flex-row justify-center items-center w-full h-3/5  p-10'>
                     <img
                         src='./bg.jpg'
-                        className='image w-full h-48 rounded-lg'
+                        className='image w-full h-48 rounded-lg mb-1'
                         alt='img'
                         data-aos="fade-up"
                         data-aos-offset="0"
@@ -21,7 +21,7 @@ export default function Outlets() {
                     />
                     <img
                         src='./bg4.jpg'
-                        className='image w-full h-68 rounded-lg '
+                        className='image w-full h-68 rounded-lg mb-1'
                         alt='img'
                         data-aos="fade-up"
                         data-aos-offset="0"
@@ -33,7 +33,7 @@ export default function Outlets() {
                     />
                     <img
                         src='./bg6.jpg'
-                        className='image w-full h-48 rounded-lg  '
+                        className='image w-full h-48 rounded-lg mb-1'
                         alt='img'
                         data-aos="fade-up"
                         data-aos-offset="0"
