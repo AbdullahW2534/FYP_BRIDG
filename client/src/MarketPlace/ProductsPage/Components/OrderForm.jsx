@@ -110,10 +110,10 @@ export default function OrderForm({ selectedProduct, closeForm, setShowNotificat
         const productName = formData.get('productName');
         
         try {
-            // const amount = { value: ethers.utils.parseEther(`${ethAmount}`) };
-            // const transaction = await contract.pay(0, customerName, productName, amount);
-            // setLoading(true);
-            // const trans = await transaction.wait();
+            const amount = { value: ethers.utils.parseEther(`${ethAmount}`) };
+            const transaction = await contract.pay(0, customerName, productName, amount);
+            setLoading(true);
+            const trans = await transaction.wait();
             axios.post('https://server94390.vercel.app/prod/order', formData)
                 .then(res => {
                     // console.log("Order Place : ",res.data._id);
@@ -127,7 +127,7 @@ export default function OrderForm({ selectedProduct, closeForm, setShowNotificat
 
                 })
                 .catch(err => console.error('Error sending data:', err));
-            // console.log("Transaction successful:", trans);
+            console.log("Transaction successful:", trans);
         } catch (error) {
             console.error("Transaction failed:", error.message);
             if (error.message == 'MetaMask Tx Signature: User denied transaction signature.') {
@@ -137,7 +137,7 @@ export default function OrderForm({ selectedProduct, closeForm, setShowNotificat
                 errorHandler('Insufficient funds for gas');
             }
         }
-        // setLoading(false);
+        setLoading(false);
 
 
     };
