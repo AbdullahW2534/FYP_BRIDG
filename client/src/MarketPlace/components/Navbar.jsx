@@ -134,7 +134,7 @@ export default function Navbar({ backgroundImage, heading }) {
         </div>
       </div>
       <div className="flex justify-center items-center w-full h-full ">
-        <h2 className="text-6xl font-bold text-white bg-white bg-opacity-10 py-1 px-20"
+        <h2 className="text-6xl font-bold text-white bg-white bg-opacity-10 py-1 px-4 lg:px-20"
           data-aos="fade-in"
           data-aos-offset="100"
           data-aos-duration="2000"

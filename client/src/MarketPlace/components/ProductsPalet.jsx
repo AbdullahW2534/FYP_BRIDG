@@ -16,7 +16,7 @@ export default function ProductsPalet() {
     <>
       <div className='w-full flex flex-col justify-center items-center'>
         <Heading heading={'EXCLUSIVE PRODUCTS'} mainHeading={'EVERYDAY CASUALS'} />
-        <div className='w-full px-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-y-5
+        <div className='w-full px-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-y-5
         gap-x-5 md:gap-x-10
         items-center justify-center' 
         data-aos="fade-in"
