@@ -10,7 +10,7 @@ function ProductCard({ productsdata }) {
         setCheck(!checked);
     }
     return (
-        <div className='w-full md:w-5/6 flex flex-col justify-center items-start shadow-lg ' >
+        <div className='w-full md:w-5/6 flex flex-col justify-center items-center shadow-lg ' >
             <img src={`${productsdata.image}`} className='w-full h-64 ' alt={`img`} />
             <h2 className='w-full text-center font-medium mt-1'>{productsdata.productName}</h2>
             <h2 className='w-full text-center text-xs mt-1'>Hurry Up..! only <span className='text-sm font-medium text-red-600'>{productsdata.productQuantity}</span> remaining</h2>
