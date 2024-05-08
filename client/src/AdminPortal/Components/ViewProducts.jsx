@@ -33,9 +33,22 @@ function ViewProducts() {
         axios.put(`https://server94390.vercel.app/prod/editProduct/${productId}`, updatedProductData)
             .then(res => {
                 console.log(res.data);
-                setNotification('Product updated'); // Set the notification message
+                setNotification('Product updated');
                 setTimeout(() => {
-                    setNotification(null); // Clear the notification after 10 seconds
+                    setNotification(null); 
+                }, 10000);
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    };
+
+    const handleDelete = (productID) => {
+        axios.post(`https://server94390.vercel.app/prod/deleteProduct/${productID}`)
+            .then(res => {
+                setNotification('Product Deleted');
+                setTimeout(() => {
+                    setNotification(null);
                 }, 10000);
             })
             .catch(err => {
@@ -48,8 +61,8 @@ function ViewProducts() {
             {notification && (
                 <div className='w-full flex justify-end'>
                     <div className="bg-green-500 w-1/5 rounded-lg text-white text-center my-2">
-                    {notification}
-                </div>
+                        {notification}
+                    </div>
                 </div>
             )}
             {editProduct && (
@@ -104,7 +117,7 @@ function ViewProducts() {
                                 <Unicons.UilEditAlt width={25} height={25} className="text-green-600 mr-4 hover:text-green-500" onClick={() => handleEditClick(product)} />
                             </td>
                             <td className='px-4 py-2 cursor-pointer'>
-                                <Unicons.UilTrashAlt width={25} height={25} className="text-red-500 mr-4 hover:text-red-600" />
+                                <Unicons.UilTrashAlt width={25} height={25} className="text-red-500 mr-4 hover:text-red-600" onClick={() => handleDelete(product._id)} />
                             </td>
                         </tr>
                     ))}

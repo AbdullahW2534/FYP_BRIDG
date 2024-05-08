@@ -49,7 +49,7 @@ router.get('/getProducts', (req, res) => {
         })
 });
 
-router.delete('/deleteProduct/:productId', (req, res) => {
+router.post('/deleteProduct/:productId', (req, res) => {
     const productId = req.params.productId;
     productsModel.findByIdAndDelete(productId)
         .then(deletedProduct => {
