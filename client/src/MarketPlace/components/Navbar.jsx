@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import * as Unicons from '@iconscout/react-unicons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -11,6 +11,12 @@ export default function Navbar({ backgroundImage, heading }) {
   const userName = useSelector(state => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuVisible(!isMobileMenuVisible);
+  };
+
 
   const handleLogout = () => {
     axios.post('https://server94390.vercel.app/auth/logout')
@@ -73,7 +79,7 @@ export default function Navbar({ backgroundImage, heading }) {
       </div>
 
       <div className='bg-white flex justify-between items-center text-sm px-4'>
-        <Unicons.UilListUl width={40} height={40} className="text-black font-bold mr-2" />
+        <Unicons.UilListUl width={40} height={40} className="text-black font-bold mr-2" onClick={toggleMobileMenu} />
         <div className='py-2 mx-4'>
           <img src="./logo.png" alt="logo" className="w-44" />
         </div>
@@ -97,6 +103,30 @@ export default function Navbar({ backgroundImage, heading }) {
             <Unicons.UilAngleDown width={20} className="text-red-600 ml-3 mr-1" />
           </a>
         </div>
+        {isMobileMenuVisible && (
+          <div className="flex flex-col md:hidden justify-evenly flex-1 text-sm absolute top-12 right-0 bg-white w-full" >
+          <a href='/' className='flex justify-end items-center my-1 '>HOME
+            <Unicons.UilAngleDown width={20} className="text-red-600 ml-3 mr-1" />
+          </a>
+          <a href='/wishlist' className='flex justify-end items-center my-1 '>WISHLIST
+            <Unicons.UilAngleDown width={20} className="text-red-600 ml-3 mr-1" />
+          </a>
+          <a href='/trackorders' className='flex justify-end items-center my-1 '>TRACK
+            <Unicons.UilAngleDown width={20} className="text-red-600 ml-3 mr-1" />
+          </a>
+          <a href='/products' className='flex justify-end items-center my-1 '>PRODUCTS
+            <Unicons.UilAngleDown width={20} className="text-red-600 ml-3 mr-1" />
+          </a>
+          <a href='/' className='flex justify-end items-center my-1 '>PAGES
+            <Unicons.UilAngleDown width={20} className="text-red-600 ml-3 mr-1" />
+          </a>
+          <a href='/blogs' className='flex justify-end items-center my-1 '>BLOG
+            <Unicons.UilAngleDown width={20} className="text-red-600 ml-3 mr-1" />
+          </a>
+            <Unicons.UilAngleDoubleUp width={40} height={40} className="text-white bg-red-500 w-full" onClick={toggleMobileMenu} />
+        </div>
+        )}
+
         <div className='flex items-center'>
           <Unicons.UilSearch width={40} height={30} className="text-gray-500 mr-2" />
           <Unicons.UilCog width={40} height={30} className="text-gray-500 mr-2" />
@@ -119,3 +149,4 @@ export default function Navbar({ backgroundImage, heading }) {
     </div>
   );
 }
+
