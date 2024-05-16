@@ -9,7 +9,7 @@ function Topbar() {
     const userName = useSelector(state => state.user);
 
     const handleLogout = () => {
-        axios.post('https://server94390.vercel.app/auth/logout')
+        axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/auth/logout`)
             .then(() => {
                 navigate('/');
             })

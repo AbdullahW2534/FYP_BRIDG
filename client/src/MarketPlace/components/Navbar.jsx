@@ -19,7 +19,7 @@ export default function Navbar({ backgroundImage, heading }) {
 
 
   const handleLogout = () => {
-    axios.post('https://server94390.vercel.app/auth/logout')
+    axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/auth/logout`)
       .then(() => {
         dispatch(addUser(""));
         navigate('/');
@@ -29,10 +29,10 @@ export default function Navbar({ backgroundImage, heading }) {
 
   useEffect(() => {
     axios.defaults.withCredentials = true;
-    axios.get('https://server94390.vercel.app/auth/getMail')
+    axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/auth/getMail`)
       .then(res => {
         const email = res.data.email;
-        axios.get('https://server94390.vercel.app/auth/getUserName', {
+        axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/auth/getUserName`, {
           params: {
             email: email
           }

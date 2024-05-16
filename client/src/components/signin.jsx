@@ -16,7 +16,7 @@ export default function SignIn() {
     axios.defaults.withCredentials = true;
     const handleSubmit = (event) =>{
         event.preventDefault();
-        axios.post('https://server94390.vercel.app/auth/login',{email,password})
+        axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/auth/login`,{email,password})
         .then(res =>{
             const{Status,role,name} = res.data;
             dispatch(addUser(name));

@@ -10,7 +10,7 @@ function TrackOne() {
         event.preventDefault();
         const trackingID = event.target.elements.trackingID.value;
         console.log("Tracker : ", trackingID);
-        axios.get(`https://server94390.vercel.app/prod/getOrderByID/${trackingID}`)
+        axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/prod/getOrderByID/${trackingID}`)
             .then(res => {
                 setPosts(res.data);
                 console.log(res.data[0]);

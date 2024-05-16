@@ -14,7 +14,7 @@ export default function AddPosts() {
         event.preventDefault();
         let formData = new FormData(event.target);
         console.log(formData);
-        axios.post('https://server94390.vercel.app/post/uploadPosts', formData)
+        axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}`/post/uploadPosts``, formData)
             .then(res => {
                 event.target.reset();
                 setNotification('Post Added'); // Set the notification message

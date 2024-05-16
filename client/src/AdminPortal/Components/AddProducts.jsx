@@ -13,7 +13,7 @@ export default function AddProducts() {
     const handleUpload = (event) => {
         event.preventDefault();
         let formData = new FormData(event.target);
-        axios.post('https://server94390.vercel.app/prod/uploadProducts', formData)
+        axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/prod/uploadProducts`, formData)
             .then(res => {
                 event.target.reset();
                 setNotification('Product Added'); // Set the notification message

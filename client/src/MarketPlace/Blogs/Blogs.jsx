@@ -7,11 +7,13 @@ import Footer from '../components/Footer';
 
 
 export default function Blogs() {
+    console.log(import.meta.env.VITE_APP_BACKEND_URL);
     const [postsData, setPosts] = useState([]);
     useEffect(() => {
-        axios.get('https://server94390.vercel.app/post/getPosts')
+        axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/post/getPosts`)
             .then(res => {
                 setPosts(res.data);
+                console.log(res.data);
             })
             .catch(err => console.log(err));
     }, []);

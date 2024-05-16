@@ -10,7 +10,7 @@ function ViewProducts() {
     const [productsdata, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get('https://server94390.vercel.app/prod/getProducts')
+        axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/prod/getProducts`)
             .then(res => {
                 setProducts(res.data)
             })
@@ -30,7 +30,7 @@ function ViewProducts() {
         const updatedProductData = new FormData(event.target);
         const productId = updatedProductData.get('_id');
 
-        axios.put(`https://server94390.vercel.app/prod/editProduct/${productId}`, updatedProductData)
+        axios.put(`${import.meta.env.VITE_APP_BACKEND_URL}/prod/editProduct/${productId}`, updatedProductData)
             .then(res => {
                 console.log(res.data);
                 setNotification('Product updated');
@@ -44,7 +44,7 @@ function ViewProducts() {
     };
 
     const handleDelete = (productID) => {
-        axios.post(`https://server94390.vercel.app/prod/deleteProduct/${productID}`)
+        axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/prod/deleteProduct/${productID}`)
             .then(res => {
                 setNotification('Product Deleted');
                 setTimeout(() => {

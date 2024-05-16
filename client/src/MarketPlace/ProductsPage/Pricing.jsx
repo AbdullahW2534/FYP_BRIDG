@@ -20,7 +20,7 @@ export default function Pricing() {
     const [checkedStates, setCheckedStates] = useState([]);
 
     useEffect(() => {
-        axios.get('https://server94390.vercel.app/prod/getProducts')
+        axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/prod/getProducts`)
             .then(res => {
                 setProductsData(res.data);
                 // Initialize checked states for each product

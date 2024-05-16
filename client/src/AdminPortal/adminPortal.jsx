@@ -10,7 +10,7 @@ export default function AdminPortal() {
 
   useEffect(() => {
     axios.defaults.withCredentials = true;
-    axios.get('https://server94390.vercel.app/dash/dashboard')
+    axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/dash/dashboard`)
       .then(res => {
         console.log("Response : ", res.data);
         if (res.data === "Success") {

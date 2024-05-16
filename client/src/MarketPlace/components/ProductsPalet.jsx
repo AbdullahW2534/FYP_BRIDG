@@ -6,7 +6,7 @@ import ProductCard from './ProductCard';
 export default function ProductsPalet() {
   const [productsdata, setProducts] = useState([]);
   useEffect(() => {
-    axios.get('https://server94390.vercel.app/prod/getProducts')
+    axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/prod/getProducts`)
       .then(res => {
         setProducts(res.data);
       })

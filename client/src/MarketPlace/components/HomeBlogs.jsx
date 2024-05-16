@@ -8,7 +8,7 @@ import BlogsPalet from '../Blogs/components/BlogsPalet';
 export default function HomeBlogs() {
     const [postsData, setPosts] = useState([]);
     useEffect(() => {
-        axios.get('https://server94390.vercel.app/post/getPosts')
+        axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/post/getPosts`)
             .then(res => {
                 setPosts(res.data);
             })

@@ -13,7 +13,7 @@ export default function Signup() {
 
     const handleSubmit = (event) =>{
         event.preventDefault();
-        axios.post('https://server94390.vercel.app/auth/register',{name,email,password})
+        axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/auth/register`,{name,email,password})
         .then(res =>{
             navigate('/signin');
         }).catch(err => console.log(err))

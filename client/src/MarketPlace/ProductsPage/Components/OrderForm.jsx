@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ethers } from 'ethers';
 import abi from "../../../contract/MernDapp.json";
-
+// ${import.meta.env.VITE_APP_BACKEND_URL}
 export default function OrderForm({ selectedProduct, closeForm, setShowNotification, setNotificationText,setTrackIDText }) {
 
     //smart-Contract Portion
@@ -55,7 +55,7 @@ export default function OrderForm({ selectedProduct, closeForm, setShowNotificat
                 console.log(error);
             }
         };
-        axios.get('https://server94390.vercel.app/auth/getMail')
+        axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/auth/getMail`)
             .then(res => {
                 setSessionuser(res.data.email);
                 return(res.data.email);
@@ -68,7 +68,7 @@ export default function OrderForm({ selectedProduct, closeForm, setShowNotificat
     // Update the fetchEthereumPrice function
     async function fetchEthereumPrice() {
         try {
-            const response = await axios.get('https://server94390.vercel.app/coin-gecko');
+            const response = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/coin-gecko`);
             return response.data.ethereum.usd;
         } catch (error) {
             console.error('Error fetching Ethereum price:', error);
@@ -115,7 +115,7 @@ export default function OrderForm({ selectedProduct, closeForm, setShowNotificat
             const transaction = await contract.pay(0, customerName, productName, amount);
             setLoading(true);
             const trans = await transaction.wait();
-            axios.post('https://server94390.vercel.app/prod/order', formData)
+            axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/prod/order`, formData)
                 .then(res => {
                     // console.log("Order Place : ",res.data._id);
                     closeForm();
@@ -144,7 +144,7 @@ export default function OrderForm({ selectedProduct, closeForm, setShowNotificat
     };
 
     useEffect(() => {
-        axios.get('https://server94390.vercel.app/prod/getProducts')
+        axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/prod/getProducts`)
             .then(res => {
                 setProducts(res.data)
             })

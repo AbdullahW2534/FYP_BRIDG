@@ -7,7 +7,7 @@ function TrackAll({ post }) {
 
     useEffect(() => {
         axios.defaults.withCredentials = true;
-        axios.get('https://server94390.vercel.app/auth/getMail')
+        axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/auth/getMail`)
             .then(res => {
                 const userEmail = res.data.email;
                 console.log("Mail : ", userEmail);
@@ -20,7 +20,7 @@ function TrackAll({ post }) {
         console.log("If User : ", sessionUser);
         if (sessionUser) {
             console.log("fetch");
-            axios.get(`https://server94390.vercel.app/prod/getOrders/${sessionUser}`)
+            axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/prod/getOrders/${sessionUser}`)
                 .then(res => {
                     console.log("Res Get : ", res.data);
                     setPosts(res.data);
