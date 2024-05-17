@@ -106,4 +106,47 @@ router.post('/uploadCategory', (req,res) => {
         .catch(err => console.log(err))
 });
 
+
+router.get('/getCategories', (req, res) => {
+    categorysModel.find()
+        .then(categories => res.json(categories))
+        .catch(error => {
+            console.error('Error Fetching categories:', error);
+            res.status(500).json({ message: 'Internal server error' });
+        })
+});
+
+router.put('/editCategory/:categoryID', async (req, res) => {
+    console.log(req.body);
+    const categoryID = req.params.categoryID;
+    categorysModel.findByIdAndUpdate(categoryID, {
+        categoryName: req.body.categoryName,
+    }, { new: true })
+        .then(updatedCategory => {
+            if (!updatedCategory) {
+                return res.status(404).json({ message: 'Category not found' });
+            }
+            res.json(updatedCategory);
+        })
+        .catch(error => {
+            console.error('Error updating Category:', error);
+            res.status(500).json({ message: 'Internal server error' });
+        });
+});
+
+router.post('/deleteCategory/:categoryID', (req, res) => {
+    const categoryID = req.params.categoryID;
+    categorysModel.findByIdAndDelete(categoryID)
+        .then(deletedCategory => {
+            if (!deletedCategory) {
+                return res.status(404).json({ message: 'Category not found' });
+            }
+            res.json({ message: 'Category deleted successfully', deletedCategory });
+        })
+        .catch(error => {
+            console.error('Error deleting Category:', error);
+            res.status(500).json({ message: 'Internal server error' });
+        });
+});
+
 export default router;

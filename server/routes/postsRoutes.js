@@ -17,7 +17,6 @@ router.post('/uploadPosts', upload.single('file'), async (req, res) => {
 router.get('/getPosts', (req, res) => {
     postsModel.find()
         .then(post => {
-            console.log("Post",post);
             res.json(post)
         })
         .catch(error => {

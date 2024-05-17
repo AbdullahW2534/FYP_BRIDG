@@ -27,18 +27,18 @@ export default function AddProducts() {
 
     return (
         <>
-            <div className='w-3/5 mt-4'>
+            <div className='w-full mt-4'>
                 {notification && (
-                    <div className='w-full flex justify-end'>
+                    <div className='w-full flex justify-end' >
                         <div className="bg-green-500 w-1/5 rounded-lg text-white text-center my-2">
                             {notification}
                         </div>
                     </div>
                 )}
 
-                <h2 className='w-full bg-gray-400 text-white flex justify-center items-center font-bold rounded-t-lg py-1'>ADD PRODUCTS
+                <h2 className='w-full px-4 text-slate-950 bg-white flex justify-start items-center font-normal rounded-t-lg py-4'>ADD PRODUCTS
                     <button onClick={handleToggleForm} className=''>
-                        {showForm ? <Unicons.UilAngleUp width={30} height={30} className="text-white mr-4" /> : <Unicons.UilAngleDown width={30} height={30} className="text-white mr-4" />}
+                        {showForm ? <Unicons.UilAngleUp width={30} height={30} className="text-slate-950 mr-4" /> : <Unicons.UilAngleDown width={30} height={30} className="text-slate-950 mr-4" />}
                     </button>
                 </h2>
 

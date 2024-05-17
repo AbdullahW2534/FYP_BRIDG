@@ -26,9 +26,9 @@ export default function AdminPortal() {
   
 
   return (
-    <div className='w-full flex bg-gray-200'>
+    <div className='w-full flex '>
       <Sidebar/>
-      <div className='w-4/5 h-screen flex flex-col '>
+      <div className='w-full h-screen flex flex-col '>
       <Topbar/>
       </div>
      

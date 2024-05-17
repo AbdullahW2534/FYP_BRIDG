@@ -57,7 +57,7 @@ function ViewProducts() {
     };
 
     return (
-        <div className='w-full p-10'>
+        <div className='w-full mt-4'>
             {notification && (
                 <div className='w-full flex justify-end'>
                     <div className="bg-green-500 w-1/5 rounded-lg text-white text-center my-2">
@@ -67,7 +67,8 @@ function ViewProducts() {
             )}
             {editProduct && (
                 <>
-                    <h2 className='w-full bg-gray-400 text-white flex justify-center items-center font-bold rounded-t-lg py-1'>Edit Product</h2>
+                
+                    <h2 className='w-full px-4 text-slate-950 bg-white flex justify-start items-center font-normal rounded-t-lg py-1'>EDIT PRODUCTS</h2>
                     <div className="w-full bg-white flex flex-col justify-center items-center p-4 rounded-b-lg shadow-lg mb-4">
                         <form className='w-full' onSubmit={handleEdit}>
                             <div className='grid grid-cols-2 gap-2'>
@@ -81,7 +82,7 @@ function ViewProducts() {
                                 <input type="text" name='productCategory' value={editProduct.productCategory} className='rounded-lg border px-2 py-1' onChange={(e) => setEditProduct({ ...editProduct, productCategory: e.target.value })} />
                                 <label htmlFor="file">Product Image</label>
                                 <div className='px-4 py-2 flex justify-end items-center'>
-                                    <img src={`http://localhost:3001/Images/${editProduct.image}`} className='w-2/5 h-36 rounded-lg' alt={`Product`} />
+                                    <img src={`${editProduct.image}`} className='w-2/5 h-36 rounded-lg' alt={`Product`} />
                                 </div>
                                 <input type="file" name='file' />
                             </div>
@@ -93,32 +94,33 @@ function ViewProducts() {
                     </div>
                 </>
             )}
+            <div className='w-full text-slate-950 py-2 px-2 bg-white font-bold '>
+                PRODUCTS
+            </div>
             <table className='table-auto w-full'>
                 <thead>
-                    <tr className='text-white'>
-                        <th className='px-4 py-2 bg-gray-400 rounded-tl-lg'>Image</th>
-                        <th className='px-4 py-2 bg-gray-400'>Product Name</th>
-                        <th className='px-4 py-2 bg-gray-400'>Price ($)</th>
-                        <th className='px-4 py-2 bg-gray-400'>Category</th>
-                        <th className='px-4 py-2 bg-gray-400'>Edit</th>
-                        <th className='px-4 py-2 bg-gray-400 rounded-tr-lg'>Delete</th>
+                    <tr className='text-slate-950 font-light'>
+                        <th className='px-4 py-2  font-bold text-gray-500 border '>Image</th>
+                        <th className='px-4 py-2  font-bold text-gray-500 border'>Product Name</th>
+                        <th className='px-4 py-2  font-bold text-gray-500 border'>Price ($)</th>
+                        <th className='px-4 py-2  font-bold text-gray-500 border'>Category</th>
+                        <th className='px-4 py-2  font-bold text-gray-500 border'></th>
                     </tr>
                 </thead>
                 <tbody>
                     {productsdata.map((product, index) => (
                         <tr key={index} className='bg-white border-b border-gray-200'>
-                            <td className='px-4 py-2'>
-                                <img src={`${product.image}`} className='w-4/5 h-36 rounded-lg' alt={`Product ${index}`} />
+                            <td className='px-4 py-2 w-1/5'>
+                                <img src={`${product.image}`} className='w-full h-60 ' alt={`Product ${index}`} />
                             </td>
-                            <td className='px-4 py-2'>{product.productName}</td>
-                            <td className='px-4 py-2'>{product.productPrice} ($)</td>
-                            <td className='px-4 py-2'>{product.productCategory}</td>
-                            <td className='px-4 py-2 cursor-pointer'>
-                                <Unicons.UilEditAlt width={25} height={25} className="text-green-600 mr-4 hover:text-green-500" onClick={() => handleEditClick(product)} />
+                            <td className='px-4 py-2 text-center'>{product.productName}</td>
+                            <td className='px-4 py-2 text-center'>{product.productPrice} ($)</td>
+                            <td className='px-4 py-2 text-center'>{product.productCategory}</td>
+                            <td className='h-full flex flex-col justify-center items-center cursor-pointer'>
+                                <Unicons.UilEditAlt width={30} height={30} className="text-green-600 my-10 hover:text-green-500" onClick={() => handleEditClick(product)} />
+                                <Unicons.UilTrashAlt width={30} height={30} className="text-red-500  hover:text-red-600" onClick={() => handleDelete(product._id)} />
                             </td>
-                            <td className='px-4 py-2 cursor-pointer'>
-                                <Unicons.UilTrashAlt width={25} height={25} className="text-red-500 mr-4 hover:text-red-600" onClick={() => handleDelete(product._id)} />
-                            </td>
+                           
                         </tr>
                     ))}
                 </tbody>

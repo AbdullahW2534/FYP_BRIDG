@@ -13,6 +13,7 @@ import Pricing from "./MarketPlace/ProductsPage/Pricing";
 import Posts from "./AdminPortal/Posts";
 import Blogs from "./MarketPlace/Blogs/Blogs";
 import TrackOrders from "./MarketPlace/TrackOrders/TrackOrder";
+import Categories from "./AdminPortal/Categories";
 
 function App() {
   return (
@@ -28,8 +29,9 @@ function App() {
             <Route path="/signin" element={<SignIn />}></Route>
             <Route path="/adminPortal" element={<AdminPortal />}></Route>
             <Route path="/adminPortal/products" element={<Products />}></Route>
-            <Route path="/adminportal/products" element={<Customers/>}></Route>
+            <Route path="/adminportal/customers" element={<Customers/>}></Route>
             <Route path="/adminportal/posts" element={<Posts/>}></Route>
+            <Route path="/adminportal/categories" element={<Categories/>}></Route>
           </Routes>
         </BrowserRouter>
       </div>
