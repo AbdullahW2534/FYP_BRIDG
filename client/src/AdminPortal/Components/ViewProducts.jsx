@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useDispatch, useSelector } from "react-redux";
-import { addProducts } from '../../features/product/productsSlice';
 import * as Unicons from '@iconscout/react-unicons';
 
 function ViewProducts() {
