@@ -14,6 +14,11 @@ import Posts from "./AdminPortal/Posts";
 import Blogs from "./MarketPlace/Blogs/Blogs";
 import TrackOrders from "./MarketPlace/TrackOrders/TrackOrder";
 import Categories from "./AdminPortal/Categories";
+import InverstorPortal from "./InvestorPortal/InverstorPortal";
+import AssistantPortal from "./AssistantPortal/AssistantPortal";
+import AddGig from "./AssistantPortal/UI/AddGig";
+import ViewGigs from "./AssistantPortal/UI/ViewGigs";
+
 
 function App() {
   return (
@@ -27,6 +32,10 @@ function App() {
             <Route path="/signup" element={<Signup />}></Route>
             <Route path="/trackorders" element={<TrackOrders />}></Route>
             <Route path="/signin" element={<SignIn />}></Route>
+            <Route path="/inverstorPortal" element={<InverstorPortal />}></Route>
+            <Route path="/assistantPortal/dashboard" element={<AssistantPortal />}></Route>
+            <Route path="/assistantPortal/addgig" element={<AddGig />}></Route>
+            <Route path="/assistantPortal/viewGigs" element={<ViewGigs />}></Route>
             <Route path="/adminPortal" element={<AdminPortal />}></Route>
             <Route path="/adminPortal/products" element={<Products />}></Route>
             <Route path="/adminportal/customers" element={<Customers/>}></Route>

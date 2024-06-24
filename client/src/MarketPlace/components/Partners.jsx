@@ -7,7 +7,7 @@ function Partners() {
             <div className='w-full h-3/5 bg-[url(./assets/images/bg10.jpg)] bg-cover opacity-10 absolute'>
 
             </div>
-            <h2 className='w-full text-center text-3xl font-medium text-white my-4 bg-red-500 '>
+            <h2 className='w-full text-center text-3xl font-medium text-white my-4 bg-purple-500 '>
                 BUSINESS COLLABORATION
             </h2>
             <div className='mb-10 w-full grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 justify-center items-center gap-2 px-4 '>

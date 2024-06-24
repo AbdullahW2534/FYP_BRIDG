@@ -12,7 +12,7 @@ export default function Heading({ heading, mainHeading }) {
       data-aos-anchor-placement="top-center">
       <h3>{heading}</h3>
       <h2 className='font-bold text-3xl'>{mainHeading}</h2>
-      <span className='w-20 border-2 border-red-500  bg-red-500'></span>
+      <span className='w-20 border-2 border-purple-500  bg-purple-500'></span>
     </div>
   )
 }

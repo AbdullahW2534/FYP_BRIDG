@@ -54,7 +54,7 @@ export default function Footer() {
       </div>
 
 
-      <div className='flex h-10 w-full bg-red-500'>
+      <div className='flex h-10 w-full bg-purple-500 mt-10'>
         <div className='flex text-xs text-white w-3/5 justify-end h-full items-center'>
           All Right Reserved ©{currentYear} SoleStyle.Inc
         </div>

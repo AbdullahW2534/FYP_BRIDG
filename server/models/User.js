@@ -4,10 +4,9 @@ const userSchema = new mongoose.Schema({
     name : String,
     email: String,
     password: String,
-    role: {
-        type : String,
-        default: "visitor"
-    }
+    role: String,
+    phoneNo: String,
+    image: String,
 });
 
 const  userModel = mongoose.model("UserData", userSchema);

@@ -1,15 +1,18 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import cloudinary from "../utils/cloudinary.js";
+import upload from "../middleware/multer.js"
 import userModel from '../models/User.js';
 
 const router = express.Router();
 
 
-router.post('/register', (req, res) => {
-    const { name, email, password } = req.body;
-    bcrypt.hash(password, 10).then(hash => {
-        userModel.create({ name, email, password: hash })
+router.post('/register', upload.single('file'), async (req, res) => {
+    const result = await cloudinary.uploader.upload(req.file.path);
+    const imageUrl = result.secure_url;
+    bcrypt.hash(req.body.password, 10).then(hash => {
+        userModel.create({ name: req.body.name, email: req.body.email, role: req.body.role, password: hash, image: imageUrl })
             .then(user => { res.json({ status: "OK" }) })
             .catch(err => res.json(err))
     }).catch(err => res.json(err))
@@ -22,11 +25,11 @@ router.post('/login', (req, res) => {
             if (user) {
                 bcrypt.compare(password, user.password, (err, response) => {
                     if (response) {
-                        const jwtToken = jwt.sign({ email: user.email, role: user.role }, "jwt-secret-key", { expiresIn: '1d' });
+                        const jwtToken = jwt.sign({ id:user._id ,email: user.email, role: user.role }, "jwt-secret-key", { expiresIn: '1d' });
                         res.cookie('token', jwtToken);
-                        return res.json({ Status: "Success", role: user.role , name: user.name});
+                        return res.json({ Status: "Success", role: user.role, name: user.name });
                     }
-                    else {
+                    else { 
                         return res.json("Password Didn't match..!");
                     }
                 })
@@ -43,6 +46,7 @@ router.post('/logout', (req, res) => {
 
 const verifyUser = (req, res, next) => {
     const token = req.cookies.token;
+    console.log(token);
     if (!token) {
         return res.json("Token Not Found");
     }
@@ -52,7 +56,7 @@ const verifyUser = (req, res, next) => {
                 return res.json("Error in Token Verification");
             }
             else {
-                req.email = decoded.email; 
+                req.email = decoded.email;
                 next();
             }
         });
@@ -65,7 +69,7 @@ router.get('/getMail', verifyUser, (req, res) => {
 })
 
 router.get('/getUserName', (req, res) => {
-    
+
     const email = req.query.email
     userModel.findOne({ email: email })
         .then(user => {

@@ -15,7 +15,7 @@ export default function ProductsPalet() {
   return (
     <>
       <div className='w-full flex flex-col justify-center items-center'>
-        <Heading heading={'EXCLUSIVE PRODUCTS'} mainHeading={'EVERYDAY CASUALS'} />
+        <Heading heading={'WE OFFERS'} mainHeading={'THE BEST SERVICES'} />
         <div className='w-full px-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-y-5
         gap-x-5 md:gap-x-10
         items-center justify-center' 
@@ -33,7 +33,7 @@ export default function ProductsPalet() {
               </>)
           })}
         </div>
-          <a href='/products' className='rounded-lg my-6 py-1 px-10 hover:bg-red-500 bg-red-600 text-white'>VIEW MORE</a>
+          <a href='/products' className='rounded-lg my-6 py-1 px-10 hover:bg-purple-500 bg-purple-600 text-white'>VIEW MORE</a>
 
       </div>
     </>

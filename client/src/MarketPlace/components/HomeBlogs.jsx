@@ -36,7 +36,7 @@ export default function HomeBlogs() {
                     })}
 
                 </div>
-                <a href='/blogs' className='rounded-lg my-6 py-1 px-10 hover:bg-red-500 bg-red-600 text-white'>MORE BLOGS</a>
+                <a href='/blogs' className='rounded-lg my-6 py-1 px-10 hover:bg-purple-500 bg-purple-600 text-white mb-10'>MORE BLOGS</a>
 
             </div>
         </>

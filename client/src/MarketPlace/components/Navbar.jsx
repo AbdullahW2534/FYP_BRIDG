@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Unicons from '@iconscout/react-unicons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -53,17 +53,17 @@ export default function Navbar({ backgroundImage, heading }) {
         </div>
       </div>
 
-      <div className='bg-red-500 flex justify-between items-center text-sm text-white py-2 px-4'>
+      <div className='bg-purple-500 flex justify-between items-center text-sm text-white py-2 px-4'>
         <div className='hidden md:flex text-xs items-center'>
           <span className='font-medium text-base text-white mr-1'>
-            SOLESTYLE.
+            BRIDG.
           </span>
           Inc
           <Unicons.UilPhone width={16} className="text-white ml-3 mr-1" />
-          +92336-7500-932
+          +923-125526-260
         </div>
         <div className='flex items-center'>
-          <FontAwesomeIcon icon={faHeart} className="hover:text-red-600 mr-2 cursor-pointer" />
+          <FontAwesomeIcon icon={faHeart} className="hover:text-purple-500 mr-2 cursor-pointer" />
           <span className='flex items-center ml-4 cursor-pointer'>
             <Unicons.UilUserExclamation width={20} className="hover:text-slate-950 mr-2" />
             {userName ? (
@@ -73,58 +73,60 @@ export default function Navbar({ backgroundImage, heading }) {
                   Logout
                 </button>
               </>
-            ) : <a href='/signin'>Signin</a>}
+            ) : <>
+              <a href='/signin' className='mx-1 bg-white font-semibold text-slate-950 rounded-lg px-2 py-1 hover:bg-slate-950 hover:text-white'>LOGIN</a>
+              <a href='/signup' className='mx-1 bg-white font-semibold text-slate-950 rounded-lg px-2 py-1 hover:bg-slate-950 hover:text-white'>REGISTER</a>
+
+            </>}
           </span>
         </div>
       </div>
 
       <div className='bg-white flex justify-between items-center text-sm px-4'>
-        <Unicons.UilListUl width={40} height={40} className="text-black font-bold mr-2" onClick={toggleMobileMenu} />
+      <Unicons.UilListUl width={40} height={40} className="text-black font-bold mr-2 lg:hidden" onClick={toggleMobileMenu} />
         <div className='py-2 mx-4'>
-          <img src="./logo.png" alt="logo" className="w-44" />
+          <img src="./logo.png" alt="logo" className="w-36" />
         </div>
         <div className="hidden md:flex justify-evenly flex-1 text-sm">
           <a href='/' className='flex justify-center items-center'>HOME
-            <Unicons.UilAngleDown width={20} className="text-red-600 ml-3 mr-1" />
-          </a>
-          <a href='/wishlist' className='flex justify-center items-center'>WISHLIST
-            <Unicons.UilAngleDown width={20} className="text-red-600 ml-3 mr-1" />
-          </a>
-          <a href='/trackorders' className='flex justify-center items-center'>TRACK
-            <Unicons.UilAngleDown width={20} className="text-red-600 ml-3 mr-1" />
-          </a>
-          <a href='/products' className='flex justify-center items-center'>PRODUCTS
-            <Unicons.UilAngleDown width={20} className="text-red-600 ml-3 mr-1" />
-          </a>
-          <a href='/' className='flex justify-center items-center'>PAGES
-            <Unicons.UilAngleDown width={20} className="text-red-600 ml-3 mr-1" />
+            <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
           </a>
           <a href='/blogs' className='flex justify-center items-center'>BLOG
-            <Unicons.UilAngleDown width={20} className="text-red-600 ml-3 mr-1" />
+            <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
           </a>
+          <a href='/about' className='flex justify-center items-center'>ABOUT
+            <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
+          </a>
+          <a href='/contact' className='flex justify-center items-center'>CONTACT
+            <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
+          </a>
+          <a href='/services' className='flex justify-center items-center'>SERVICES
+            <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
+          </a>
+
+         
         </div>
         {isMobileMenuVisible && (
           <div className="flex flex-col md:hidden justify-evenly flex-1 text-sm absolute top-12 right-0 bg-white w-full" >
-          <a href='/' className='flex justify-end items-center my-1 '>HOME
-            <Unicons.UilAngleDown width={20} className="text-red-600 ml-3 mr-1" />
-          </a>
-          <a href='/wishlist' className='flex justify-end items-center my-1 '>WISHLIST
-            <Unicons.UilAngleDown width={20} className="text-red-600 ml-3 mr-1" />
-          </a>
-          <a href='/trackorders' className='flex justify-end items-center my-1 '>TRACK
-            <Unicons.UilAngleDown width={20} className="text-red-600 ml-3 mr-1" />
-          </a>
-          <a href='/products' className='flex justify-end items-center my-1 '>PRODUCTS
-            <Unicons.UilAngleDown width={20} className="text-red-600 ml-3 mr-1" />
-          </a>
-          <a href='/' className='flex justify-end items-center my-1 '>PAGES
-            <Unicons.UilAngleDown width={20} className="text-red-600 ml-3 mr-1" />
-          </a>
-          <a href='/blogs' className='flex justify-end items-center my-1 '>BLOG
-            <Unicons.UilAngleDown width={20} className="text-red-600 ml-3 mr-1" />
-          </a>
-            <Unicons.UilAngleDoubleUp width={40} height={40} className="text-white bg-red-500 w-full" onClick={toggleMobileMenu} />
-        </div>
+            <a href='/' className='flex justify-end items-center my-1 '>HOME
+              <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
+            </a>
+            <a href='/blogs' className='flex justify-end items-center my-1 '>BLOG
+              <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
+            </a>
+            <a href='/wishlist' className='flex justify-end items-center my-1 '>ABOUT
+              <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
+            </a>
+            <a href='/trackorders' className='flex justify-end items-center my-1 '>CONTACT
+              <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
+            </a>
+            <a href='/products' className='flex justify-end items-center my-1 '>SERVICES
+              <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
+            </a>
+
+            
+            <Unicons.UilAngleDoubleUp width={40} height={40} className="text-white bg-purple-500 w-full" onClick={toggleMobileMenu} />
+          </div>
         )}
 
         <div className='flex items-center'>

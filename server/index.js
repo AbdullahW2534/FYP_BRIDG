@@ -6,6 +6,7 @@ import authRouter from "./routes/authRoutes.js";
 import dashRouter from "./routes/dashboardRoutes.js";
 import prodRouter from "./routes/productsRoutes.js";
 import postRouter from "./routes/postsRoutes.js";
+import assistantRouter from './routes/assistantRoutes.js';
 import axios from 'axios';
 
 const app = express();
@@ -20,12 +21,13 @@ app.use(cors({
 app.use(express.static('public'))
 app.use(cookieParser())
 
-mongoose.connect('mongodb+srv://muhammadbilal94390:bilalkhan94390@cluster0.ibfi1yh.mongodb.net/testEcom?retryWrites=true&w=majority&appName=Cluster0');
+mongoose.connect(process.env.MONGODB_URL);
 
 app.use('/auth', authRouter);
 app.use('/dash', dashRouter);
 app.use('/prod', prodRouter);
 app.use('/post', postRouter);
+app.use('/assistant', assistantRouter);
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
