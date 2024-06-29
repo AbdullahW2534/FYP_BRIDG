@@ -1,17 +1,32 @@
 import mongoose from "mongoose";
 
 const ordersSchema = new mongoose.Schema({
-    email : String,
-    productName : String,
-    productPrice: String,
-    customerName: String,
-    productColor: String,
-    productSize: String,
-    quantity: Number,    
+    title : String,
+    price : String,
+    deliveryTime: String,
+    gigUser: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "UserData",
+        required: true
+    },
+    taskHead: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "UserData",
+        required: true
+    },
+    taskDescription: String,    
     orderStatus: {
         type : String,
-        default: "booked"
+        default: "placed"
     },
+    paymentReference : String,
+    message : String,
+    redirecturl: String,
+    status : String,
+    trans : String,
+    transaction: String,
+    trxref : String,
+  
 });
 
 const  ordersModel = mongoose.model("orderData", ordersSchema);

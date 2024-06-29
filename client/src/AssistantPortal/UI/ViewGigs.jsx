@@ -10,6 +10,7 @@ function ViewGigs() {
     const [gigsData, setGig] = useState([]);
 
     useEffect(() => {
+        axios.defaults.withCredentials = true;
         axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/assistant/getGigs`)
             .then(res => {
                 setGig(res.data)
@@ -65,40 +66,45 @@ function ViewGigs() {
                     <div className='w-full text-purple-500 py-2 px-2 text-center text-3xl font-bold '>
                         GIGS
                     </div>
-                    <table className='table-auto w-full'>
-                        <thead>
-                            <tr className='text-slate-950 font-light'>
-                                <th className='px-4 py-2  font-bold text-gray-500 border '>Image</th>
-                                <th className='px-4 py-2  font-bold text-gray-500 border'>Title</th>
-                                <th className='px-4 py-2  font-bold text-gray-500 border'>Description</th>
-                                <th className='px-4 py-2  font-bold text-gray-500 border'>Keywords</th>
-                                <th className='px-4 py-2  font-bold text-gray-500 border'>Price</th>
-                                <th className='px-4 py-2  font-bold text-gray-500 border'>Delivery Time</th>
-                                <th className='px-4 py-2  font-bold text-gray-500 border'>Link</th>
-                                <th className='px-4 py-2  font-bold text-gray-500 border'></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {gigsData.map((gig, index) => (
-                                <tr key={index} className='bg-white border-b border-gray-200'>
-                                    <td className='px-4 py-2 w-1/5'>
-                                        <img src={`${gig.image}`} className='w-full h-60 ' alt={`gig ${index}`} />
-                                    </td>
-                                    <td className='px-4 py-2 text-center'>{gig.title}</td>
-                                    <td className='px-4 py-2 text-center'>{gig.description} </td>
-                                    <td className='px-4 py-2 text-center'>{gig.keywords} ($)</td>
-                                    <td className='px-4 py-2 text-center'>{gig.price} ($)</td>
-                                    <td className='px-4 py-2 text-center'>{gig.deliveryTime} </td>
-                                    <td className='px-4 py-2 text-center'>{gig.link}</td>
-                                    <td className='h-full flex flex-col justify-center items-center cursor-pointer'>
-                                        <Unicons.UilEditAlt width={30} height={30} className="text-green-600 my-10 hover:text-green-500" onClick={() => handleEditClick(gig)} />
-                                        <Unicons.UilTrashAlt width={30} height={30} className="text-red-500  hover:text-red-600" onClick={() => handleDelete(gig._id)} />
-                                    </td>
+                    <div class="grid grid-cols-3 gap-4 p-4">
+                        {gigsData.map((gig, index) => (
+                            <>
+                                <div className='w-full flex flex-col  shadow-sm shadow-purple-500 rounded-lg py-4'>
+                                    <img src={`${gig.image}`} className='w-full h-60' alt={`gig ${index}`} />
+                                    <h2 className='w-full text-center bg-purple-500 text-white font-bold'>
+                                        {gig.title}
+                                    </h2>
+                                    <h2 className='w-full px-2'>
+                                        <span className='text-purple-500 font-bold'>
+                                            Description :</span>
+                                        {gig.description}
+                                    </h2>
+                                    <h2 className='w-full px-2' >
+                                        <span className='text-purple-500 font-bold'>
+                                            Keywords :</span>
+                                        {gig.keywords}
+                                    </h2>
+                                    <h2 className='w-full px-2'>
+                                        <span className='text-purple-500 font-bold'>
+                                            Price :</span>
+                                        {gig.price} USD
+                                    </h2>
+                                    <h2 className='w-full px-2'>
+                                        <span className='text-purple-500 font-bold'>
+                                            Delivery Time :</span>
+                                        {gig.deliveryTime}
+                                    </h2>
+                                    <a href={gig.link} className=' text-center rounded-lg px-2 py-1  bg-purple-500 text-white font-bold'>
 
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                                        Visit
+                                    </a>
+                                </div>
+                            </>
+
+                        ))}
+                    </div>
+
+
                 </div>
             </div>
 

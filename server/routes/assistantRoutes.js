@@ -2,6 +2,7 @@ import express from 'express';
 import gigsModel from '../models/Gig.js';
 import ordersModel from '../models/Order.js';
 import categorysModel from '../models/Categories.js';
+import userModel from '../models/User.js';
 import cloudinary from "../utils/cloudinary.js";
 import upload from "../middleware/multer.js";
 import jwt from 'jsonwebtoken';
@@ -38,10 +39,25 @@ router.post('/uploadGig', upload.single('file'), async (req, res) => {
     }
 });
 router.get('/getGigs', (req, res) => {
-    gigsModel.find()
+    const token = req.cookies.token;
+    if (!token) {
+        return res.status(401).json({ message: "Authentication token is missing" });
+    }
+    const decoded = jwt.verify(token, "jwt-secret-key");
+    const userId = decoded.id;
+    gigsModel.find({ user: userId })
         .then(gig => res.json(gig))
         .catch(error => {
             console.error('Error Fetching gig:', error);
+            res.status(500).json({ message: 'Internal server error' });
+        })
+});
+router.get('/getAllGigs', (req, res) => {
+    gigsModel.find()
+        .populate('user', 'name image email') // Populate the 'user' field with 'name' field from UserModel
+        .then(gigs =>{ res.json(gigs)})
+        .catch(error => {
+            console.error('Error Fetching gigs:', error);
             res.status(500).json({ message: 'Internal server error' });
         })
 });

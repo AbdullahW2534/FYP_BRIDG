@@ -4,7 +4,7 @@ import Topbar from '../Components/Topbar';
 import axios from 'axios';
 
 export default function AddGig() {
-    const [notification, setNotification] = useState(null);
+
     const handleUpload = (event) => {
         event.preventDefault();
         let formData = new FormData(event.target);
@@ -13,10 +13,6 @@ export default function AddGig() {
             .then(res => {
                 event.target.reset();
                 console.log(res)
-                setNotification('Gig Added');
-                setTimeout(() => {
-                    setNotification(null);
-                }, 10000);
             })
             .catch(err => console.log(err));
     };
@@ -25,13 +21,6 @@ export default function AddGig() {
             <Sidebar />
             <div className='w-full h-screen flex flex-col '>
                 <Topbar />
-                {notification && (
-                        <div className='w-full flex justify-end'>
-                            <div className="bg-green-500 rounded-lg text-white text-center my-2 mx-2 py-2 px-2">
-                                {notification}
-                            </div>
-                        </div>
-                    )}
                 <h2 className='w-full text-center font-bold text-purple-500 text-3xl'>
                     ADD GIG
                 </h2>

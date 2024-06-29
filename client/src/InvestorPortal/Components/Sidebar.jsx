@@ -5,39 +5,31 @@ function Sidebar() {
     return (
         <div className='min-h-screen h-100vh flex flex-col justify-top items-center w-1/6 pt-4  bg-slate-950'>
             <a href='/'>
-                <h2 className='text-2xl my-2   text-center text-white font-bold'>
-                    <span className="w-full text-purple-500 text-end text-5xl scale-75 ">
-                        B
-                    </span>
+            <h2 className='text-2xl my-2   text-center text-white font-bold'>
+                <span className="w-full text-purple-500 text-end text-5xl scale-75 ">
+                   B
+                </span>
 
-                    RIDG
-                </h2>
+               RIDG
+            </h2>
             </a>
             <div className='flex flex-col justify-center items-center w-full mt-16'>
-                <a href="/assistant/dashboard" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
+                <a href="/investor/dashboard" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
                     <Unicons.UilCreateDashboard width={27} height={27} className="text-purple-500 mr-4" />
                     Dashboard
                 </a>
-                <a href="/assistant/addgig" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
-                    <Unicons.UilPicture width={27} height={27} className="text-purple-500 mr-4" />
-                    Add Gig
-                </a>
-                <a href="/assistant/viewGigs" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
-                    <Unicons.UilUserMd width={27} height={27} className="text-purple-500 mr-4" />
-                    View Gigs
-                </a>
-
-                <a href="/assistant/viewOrders" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
+                <a href="/investor/viewOrders" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
                     <Unicons.UilSortAmountUp width={27} height={27} className="text-purple-500 mr-4" />
                     Orders
                 </a>
-
-                <a href="/assistant/accountsettings" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
+                <a href="/investor/addgig" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
+                    <Unicons.UilPicture width={27} height={27} className="text-purple-500 mr-4" />
+                    Messeges
+                </a>
+                <a href="/investor/accountsettings" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
                     <Unicons.UilTag width={27} height={27} className="text-purple-500 mr-4" />
                     Account Settings
                 </a>
-
-
             </div>
 
             {/* <div className='flex justify-center items-cenyter w-full mt-28'>

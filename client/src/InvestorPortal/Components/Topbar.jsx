@@ -23,8 +23,8 @@ function Topbar() {
                 })
                     .then(res => {
                         console.log(res, "Nav");
-                        const { name, role, image } = res.data;
-                        dispatch(addUser({ name, role, image,email }));
+                        const { name, role, image ,email} = res.data;
+                        dispatch(addUser({ name, role, image ,email}));
                     })
                     .catch(err => console.log(err));
             })

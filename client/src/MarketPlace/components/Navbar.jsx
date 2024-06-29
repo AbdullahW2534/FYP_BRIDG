@@ -9,6 +9,9 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Navbar({ backgroundImage, heading }) {
   const userName = useSelector(state => state.user);
+  const userRole = useSelector(state => state.role);
+  const image = useSelector(state => state.image);
+  console.log(image);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
@@ -38,7 +41,9 @@ export default function Navbar({ backgroundImage, heading }) {
           }
         })
           .then(res => {
-            dispatch(addUser(res.data.name));
+            console.log(res, "Nav");
+            const { name, role, image,email } = res.data;
+            dispatch(addUser({ name, role, image,email }));
           })
           .catch(err => console.log(err));
       })
@@ -65,13 +70,19 @@ export default function Navbar({ backgroundImage, heading }) {
         <div className='flex items-center'>
           <FontAwesomeIcon icon={faHeart} className="hover:text-purple-500 mr-2 cursor-pointer" />
           <span className='flex items-center ml-4 cursor-pointer'>
-            <Unicons.UilUserExclamation width={20} className="hover:text-slate-950 mr-2" />
+
             {userName ? (
               <>
-                {userName} <button onClick={handleLogout} className='w-full flex justify-start items-center ml-2 border border-white rounded-lg p-1'>
-                  <Unicons.UilSignout width={15} height={15} className="text-white cursor-pointer" />
-                  Logout
-                </button>
+                <div className='flex justify-between items-center '>
+                  <a href={`/${userRole}/dashboard`} className='w-14 h-14 flex justify-center items-center mr-2'>
+                    <img src={image} alt='profile' className=' w-10 h-9 rounded-full' />
+                  </a>
+                  {userName}
+                  <button onClick={handleLogout} className='w-full flex justify-start items-center ml-2 border border-white rounded-lg p-1'>
+                    <Unicons.UilSignout width={15} height={15} className="text-white cursor-pointer" />
+                    Logout
+                  </button>
+                </div>
               </>
             ) : <>
               <a href='/signin' className='mx-1 bg-white font-semibold text-slate-950 rounded-lg px-2 py-1 hover:bg-slate-950 hover:text-white'>LOGIN</a>
@@ -83,7 +94,7 @@ export default function Navbar({ backgroundImage, heading }) {
       </div>
 
       <div className='bg-white flex justify-between items-center text-sm px-4'>
-      <Unicons.UilListUl width={40} height={40} className="text-black font-bold mr-2 lg:hidden" onClick={toggleMobileMenu} />
+        <Unicons.UilListUl width={40} height={40} className="text-black font-bold mr-2 lg:hidden" onClick={toggleMobileMenu} />
         <div className='py-2 mx-4'>
           <img src="./logo.png" alt="logo" className="w-36" />
         </div>
@@ -92,6 +103,9 @@ export default function Navbar({ backgroundImage, heading }) {
             <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
           </a>
           <a href='/blogs' className='flex justify-center items-center'>BLOG
+            <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
+          </a>
+          <a href='/gigs' className='flex justify-center items-center'>GIGS
             <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
           </a>
           <a href='/about' className='flex justify-center items-center'>ABOUT
@@ -104,7 +118,7 @@ export default function Navbar({ backgroundImage, heading }) {
             <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
           </a>
 
-         
+
         </div>
         {isMobileMenuVisible && (
           <div className="flex flex-col md:hidden justify-evenly flex-1 text-sm absolute top-12 right-0 bg-white w-full" >
@@ -112,6 +126,9 @@ export default function Navbar({ backgroundImage, heading }) {
               <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
             </a>
             <a href='/blogs' className='flex justify-end items-center my-1 '>BLOG
+              <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
+            </a>
+            <a href='/gigs' className='flex justify-end items-center my-1 '>GIGS
               <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
             </a>
             <a href='/wishlist' className='flex justify-end items-center my-1 '>ABOUT
@@ -124,7 +141,7 @@ export default function Navbar({ backgroundImage, heading }) {
               <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
             </a>
 
-            
+
             <Unicons.UilAngleDoubleUp width={40} height={40} className="text-white bg-purple-500 w-full" onClick={toggleMobileMenu} />
           </div>
         )}

@@ -12,17 +12,21 @@ import Customers from "./AdminPortal/Customers";
 import Pricing from "./MarketPlace/ProductsPage/Pricing";
 import Posts from "./AdminPortal/Posts";
 import Blogs from "./MarketPlace/Blogs/Blogs";
-import TrackOrders from "./MarketPlace/TrackOrders/TrackOrder";
 import Categories from "./AdminPortal/Categories";
 import InverstorPortal from "./InvestorPortal/InverstorPortal";
 import AssistantPortal from "./AssistantPortal/AssistantPortal";
 import AddGig from "./AssistantPortal/UI/AddGig";
 import ViewGigs from "./AssistantPortal/UI/ViewGigs";
+import Gigs from "./MarketPlace/Gigs/Gigs";
+import ViewOrders from "./AssistantPortal/UI/ViewOrders";
+import InvestorOrders from "./InvestorPortal/UI/InvestorOrders";
+import AccountSettingsAssistant from "./AssistantPortal/UI/AccountSettingsAssistant";
+import AccountSettingsInvestor from "./InvestorPortal/UI/AccountSettingsInvestor";
 
 
 function App() {
   return (
-    <Provider store={store}> {/* Place Provider here to wrap the entire application */}
+    <Provider store={store}>
       <div>
         <BrowserRouter>
           <Routes>
@@ -30,12 +34,16 @@ function App() {
             <Route path="/products" element={<Pricing />}></Route>
             <Route path="/blogs" element={<Blogs />}></Route>
             <Route path="/signup" element={<Signup />}></Route>
-            <Route path="/trackorders" element={<TrackOrders />}></Route>
+            <Route path="/gigs" element={<Gigs />}></Route>
             <Route path="/signin" element={<SignIn />}></Route>
-            <Route path="/inverstorPortal" element={<InverstorPortal />}></Route>
-            <Route path="/assistantPortal/dashboard" element={<AssistantPortal />}></Route>
-            <Route path="/assistantPortal/addgig" element={<AddGig />}></Route>
-            <Route path="/assistantPortal/viewGigs" element={<ViewGigs />}></Route>
+            <Route path="/investor/dashboard" element={<InverstorPortal />}></Route>
+            <Route path="/investor/viewOrders" element={<InvestorOrders />}></Route>
+            <Route path="/investor/accountsettings" element={<AccountSettingsInvestor />}></Route>
+            <Route path="/assistant/accountsettings" element={<AccountSettingsAssistant />}></Route>
+            <Route path="/assistant/dashboard" element={<AssistantPortal />}></Route>
+            <Route path="/assistant/addgig" element={<AddGig />}></Route>
+            <Route path="/assistant/viewGigs" element={<ViewGigs />}></Route>
+            <Route path="/assistant/viewOrders" element={<ViewOrders />}></Route>
             <Route path="/adminPortal" element={<AdminPortal />}></Route>
             <Route path="/adminPortal/products" element={<Products />}></Route>
             <Route path="/adminportal/customers" element={<Customers/>}></Route>

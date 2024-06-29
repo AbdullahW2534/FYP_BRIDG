@@ -25,11 +25,11 @@ router.post('/login', (req, res) => {
             if (user) {
                 bcrypt.compare(password, user.password, (err, response) => {
                     if (response) {
-                        const jwtToken = jwt.sign({ id:user._id ,email: user.email, role: user.role }, "jwt-secret-key", { expiresIn: '1d' });
+                        const jwtToken = jwt.sign({ id: user._id, email: user.email, role: user.role }, "jwt-secret-key", { expiresIn: '1d' });
                         res.cookie('token', jwtToken);
-                        return res.json({ Status: "Success", role: user.role, name: user.name });
+                        return res.json({ Status: "Success", name: user.name, role: user.role, image: user.image, email: user.email });
                     }
-                    else { 
+                    else {
                         return res.json("Password Didn't match..!");
                     }
                 })
@@ -46,7 +46,6 @@ router.post('/logout', (req, res) => {
 
 const verifyUser = (req, res, next) => {
     const token = req.cookies.token;
-    console.log(token);
     if (!token) {
         return res.json("Token Not Found");
     }
@@ -76,7 +75,7 @@ router.get('/getUserName', (req, res) => {
             if (!user) {
                 return res.status(404).json({ message: 'User not found' });
             }
-            res.json({ name: user.name });
+            res.json({ name: user.name, role: user.role, image: user.image, email: user.email });
         })
         .catch(error => {
             console.error('Error Fetching user:', error);
@@ -84,6 +83,54 @@ router.get('/getUserName', (req, res) => {
         });
 });
 
+router.put('/accountsettings', upload.single('file'), async (req, res) => {
+    const token = req.cookies.token;
+    if (!token) {
+        return res.status(401).json({ message: "Authentication token is missing" });
+    }
+
+    try {
+        const decoded = jwt.verify(token, "jwt-secret-key");
+        const userId = decoded.id;
+        let updatedFields = {};
+
+        
+        if (req.file) {
+            const result = await cloudinary.uploader.upload(req.file.path);
+            updatedFields.image = result.secure_url;
+        }
+
+        
+        if (req.body.oldPassword) {
+            const user = await userModel.findById(userId);
+            if (!user) {
+                return res.status(404).json({ message: "User not found" });
+            }
+            const isMatch = await bcrypt.compare(req.body.oldPassword, user.password);
+            if (!isMatch) {
+                return res.status(400).json({ message: "Old password didn't match" });
+            }
+            const hashedPassword = await bcrypt.hash(req.body.newPassword, 10);
+            updatedFields.password = hashedPassword;
+        }
+
+        
+        if (req.body.name) {
+            updatedFields.name = req.body.name;
+        }
+
+       
+        const updatedUser = await userModel.findByIdAndUpdate(userId, updatedFields, { new: true });
+        if (!updatedUser) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        res.json({ status: "OK", user: updatedUser });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
 
 
 

@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { addProducts } from '../features/product/productsSlice';
 import Outlets from './components/Outlets';
 import ProductsPalet from './components/ProductsPalet';
-import Blogs from './Blogs/Blogs';
 import HomeBlogs from './components/HomeBlogs';
 import Footer from './components/Footer';
 import Policy from './components/Policy';

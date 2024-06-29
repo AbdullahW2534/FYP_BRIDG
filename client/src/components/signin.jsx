@@ -19,17 +19,21 @@ export default function SignIn() {
         event.preventDefault();
         axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/auth/login`, { email, password })
             .then(res => {
-                const { Status, role, name } = res.data;
-                dispatch(addUser(name));
+                const { Status, role, name,image,email } = res.data;
+                dispatch(addUser({name,role,image,email}));
+                console.log(res.data);
                 if (Status === 'Success') {
                     if (role === 'admin') {
                         navigate('/adminPortal');
                     }
                     else if (role === 'investor') {
-                        navigate("/inverstorPortal");
+                        navigate("/investor/dashboard");
                     }
-                    else {
-                        navigate('/assistantPortal/dashboard');
+                    else if (role === 'assistant') {
+                        navigate('/assistant/dashboard');
+                    }
+                    else{
+                        navigate('/');
                     }
                 }
             }).catch(err => console.log(err))

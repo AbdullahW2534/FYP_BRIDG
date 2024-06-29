@@ -9,7 +9,7 @@ const router = express.Router();
 router.post('/uploadPosts', upload.single('file'), async (req, res) => {
     const result = await cloudinary.uploader.upload(req.file.path);
     const imageUrl = result.secure_url;
-    postsModel.create({heading : req.body.heading,auther: req.body.auther,content: req.body.content,image: imageUrl })
+    postsModel.create({ heading: req.body.heading, auther: req.body.auther, content: req.body.content, image: imageUrl })
         .then(result => res.json(result))
         .catch(err => console.log(err))
 });
@@ -37,7 +37,7 @@ router.get('/getPosts', (req, res) => {
 //         image: req.file.filename
 //     }, { new: true })
 //         .then(updatedProduct => {
-    //             if (!updatedProduct) {
+//             if (!updatedProduct) {
 //                 return res.status(404).json({ message: 'Product not found' });
 //             }
 //             res.json(updatedProduct);
