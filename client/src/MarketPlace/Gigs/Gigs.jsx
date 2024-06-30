@@ -7,15 +7,40 @@ import Modal from '../components/Modal';
 
 export default function Gigs() {
     const [gigsData, setGig] = useState([]);
+    const [categories, setCategories] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedGig, setSelectedGig] = useState(null);
+    const [searchByTitle, setSearchTitle] = useState('');
+    const [searchByAssistant, setSearchAssistant] = useState('');
+
+    const fetchGigs = async () => {
+        try {
+            axios.defaults.withCredentials = true;
+            const response = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/assistant/getAllGigs`, {
+                params: {
+                    searchByTitle: searchByTitle,
+                    searchByAssistant: searchByAssistant
+                }
+            });
+            setGig(response.data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const fetchCategories = async () => {
+        try {
+            const response = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/prod/getCategories`);
+            console.log(response.data);
+            setCategories(response.data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     useEffect(() => {
-        axios.defaults.withCredentials = true;
-        axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/assistant/getAllGigs`)
-            .then(res => {
-                setGig(res.data);
-            })
-            .catch(err => console.log(err));
+        fetchCategories();
+        fetchGigs();
     }, []);
 
     const handleHireClick = (gig) => {
@@ -29,6 +54,17 @@ export default function Gigs() {
                 <Navbar backgroundImage="bg-[url('./assets/images/bg9.jpg')]" heading={'STREAM THE BEST GIGS'} />
                 <div className='w-full flex flex-col justify-center items-center'>
                     <Heading heading={'GET IN TOUCH'} mainHeading={'LOOK FOR BEST'} />
+                    <div className='z-50 flex justify-center w-full'>
+                        <input type="text" name='searchByTitle' onChange={(e) => setSearchTitle(e.target.value)} placeholder='Search Gigs By Title' className='p-2 border border-purple-500 rounded-lg mx-4' />
+                        <input type="text" name='searchByAssistant' onChange={(e) => setSearchAssistant(e.target.value)} placeholder='Search Gigs By Assistants' className='p-2 border border-purple-500 rounded-lg mx-4' />
+                        <select name="category" id="category" className='p-2 border border-purple-500 rounded-lg mx-4'>
+                            <option value="">All Categories</option>
+                            {categories.map((category, index) => (
+                                <option key={index} value={category.categoryName}>{category.categoryName}</option>
+                            ))}
+                        </select>
+                        <button className='bg-purple-500 text-white p-2 rounded-lg' onClick={fetchGigs}>Search</button>
+                    </div>
                     <div className='grid grid-cols-4 gap-4 p-4 mb-20'>
                         {gigsData.map((gig, index) => (
                             <div key={index} className='w-full flex flex-col shadow-sm shadow-purple-500 rounded-lg py-4 relative'>
@@ -86,5 +122,3 @@ export default function Gigs() {
         </>
     );
 }
-
-

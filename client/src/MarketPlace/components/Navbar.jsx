@@ -45,7 +45,9 @@ export default function Navbar({ backgroundImage, heading }) {
             const { name, role, image,email } = res.data;
             dispatch(addUser({ name, role, image,email }));
           })
-          .catch(err => console.log(err));
+          .catch(err => {
+            
+          });
       })
       .catch(err => console.log(err));
   }, []);

@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 import cors from 'cors';
 import authRouter from "./routes/authRoutes.js";
 import dashRouter from "./routes/dashboardRoutes.js";
-import prodRouter from "./routes/productsRoutes.js";
+import servicesRouter from './routes/servicesRoutes.js';
 import postRouter from "./routes/postsRoutes.js";
 import assistantRouter from './routes/assistantRoutes.js';
 import orderRoutes from "./routes/orderRoutes.js";
@@ -26,7 +26,7 @@ mongoose.connect(process.env.MONGODB_URL);
 
 app.use('/auth', authRouter);
 app.use('/dash', dashRouter);
-app.use('/prod', prodRouter);
+app.use('/prod', servicesRouter);
 app.use('/post', postRouter);
 app.use('/assistant', assistantRouter);
 app.use('/order', orderRoutes);

@@ -7,43 +7,49 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Signup() {
     const navigate = useNavigate();
-
+    const [notification, setNotification] = useState(null);
     const handleSubmit = (event) => {
         event.preventDefault();
         let formData = new FormData(event.target);
         console.log(formData);
         axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/auth/register`, formData)
             .then(res => {
-                // event.target.reset();
+
                 navigate('/signin');
-                // setNotification('User Added'); // Set the notification message
-                // setTimeout(() => {
-                //     setNotification(null); // Clear the notification after 10 seconds
-                // }, 10000);
+
                 console.log(res)
             })
-            .catch(err => console.log(err));
-        // axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/auth/register`, { name, email, password })
-        //     .then(res => {
-        //         navigate('/signin');
-        //     }).catch(err => console.log(err))
+            .catch(err => {
+                setNotification(err.response.data.message);
+                setTimeout(() => {
+                    setNotification(null);
+                }, 10000);
+            }
+            );
     }
     return (
         <>
             <div className='w-full h-screen flex justify-center items-center bg-gray-900'>
+
                 <div className={` hidden  lg:flex flex-col w-1/2 h-full justify-end items-end  bg-cover bg-[url('./assets/images/signup.jpg')]`}>
                     <a href='/'>
-                    <h2 className='text-2xl  text-white font-bold px-6 bg-opacity-50 my-4' >
-                        <span className="w-full text-purple-500 text-end text-5xl scale-75 ">
-                            BRIDG
-                        </span>
-                        .INC
+                        <h2 className='text-2xl  text-white font-bold px-6 bg-opacity-50 my-4' >
+                            <span className="w-full text-purple-500 text-end text-5xl scale-75 ">
+                                BRIDG
+                            </span>
+                            .INC
 
-                    </h2>
+                        </h2>
                     </a>
                 </div>
                 <div className={`flex flex-col w-full lg:w-1/2 h-full justify-center items-center bg-white `}>
-
+                    {notification && (
+                        <div className='w-full flex justify-end'>
+                            <div className="bg-green-500 rounded-lg text-white text-center my-2 mx-2 py-2 px-2">
+                                {notification}
+                            </div>
+                        </div>
+                    )}
                     <h2 className='w-full flex justify-center items-center text-purple-500 text-3xl mb-4 font-bold'>
                         SIGNUP
                     </h2>

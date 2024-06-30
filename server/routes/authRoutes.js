@@ -9,14 +9,34 @@ const router = express.Router();
 
 
 router.post('/register', upload.single('file'), async (req, res) => {
-    const result = await cloudinary.uploader.upload(req.file.path);
-    const imageUrl = result.secure_url;
-    bcrypt.hash(req.body.password, 10).then(hash => {
-        userModel.create({ name: req.body.name, email: req.body.email, role: req.body.role, password: hash, image: imageUrl })
-            .then(user => { res.json({ status: "OK" }) })
-            .catch(err => res.json(err))
-    }).catch(err => res.json(err))
-})
+    try {
+        
+        const existingUser = await userModel.findOne({ email: req.body.email });
+        if (existingUser) {
+            return res.status(400).json({ message: 'Email already exists' });
+        }
+
+        
+        const result = await cloudinary.uploader.upload(req.file.path);
+        const imageUrl = result.secure_url;
+
+        
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+       
+        const newUser = await userModel.create({
+            name: req.body.name,
+            email: req.body.email,
+            role: req.body.role,
+            password: hashedPassword,
+            image: imageUrl
+        });
+        res.json({ status: 'OK' });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 
 router.post('/login', (req, res) => {
     const { email, password } = req.body;
@@ -94,13 +114,13 @@ router.put('/accountsettings', upload.single('file'), async (req, res) => {
         const userId = decoded.id;
         let updatedFields = {};
 
-        
+
         if (req.file) {
             const result = await cloudinary.uploader.upload(req.file.path);
             updatedFields.image = result.secure_url;
         }
 
-        
+
         if (req.body.oldPassword) {
             const user = await userModel.findById(userId);
             if (!user) {
@@ -114,12 +134,12 @@ router.put('/accountsettings', upload.single('file'), async (req, res) => {
             updatedFields.password = hashedPassword;
         }
 
-        
+
         if (req.body.name) {
             updatedFields.name = req.body.name;
         }
 
-       
+
         const updatedUser = await userModel.findByIdAndUpdate(userId, updatedFields, { new: true });
         if (!updatedUser) {
             return res.status(404).json({ message: "User not found" });
