@@ -2,38 +2,38 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import * as Unicons from '@iconscout/react-unicons';
 
-function ViewProducts() {
-    const [editProduct, setEditProduct] = useState(null);
+function Viewservices() {
+    const [editservice, setEditservice] = useState(null);
     const [notification, setNotification] = useState(null);
-    const [productsdata, setProducts] = useState([]);
+    const [servicesData, setServices] = useState([]);
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/prod/getProducts`)
+        axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/prod/getServices`)
             .then(res => {
-                setProducts(res.data)
+                setServices(res.data)
             })
             .catch(err => console.log(err));
     }, []);
 
-    const handleEditClick = (product) => {
-        setEditProduct(product);
+    const handleEditClick = (service) => {
+        setEditservice(service);
     };
 
     const handleCancelEdit = () => {
-        setEditProduct(null);
+        setEditservice(null);
     };
 
     const handleEdit = (event) => {
         event.preventDefault();
-        const updatedProductData = new FormData(event.target);
-        const productId = updatedProductData.get('_id');
+        const updatedserviceData = new FormData(event.target);
+        const serviceId = updatedserviceData.get('_id');
 
-        axios.put(`${import.meta.env.VITE_APP_BACKEND_URL}/prod/editProduct/${productId}`, updatedProductData)
+        axios.put(`${import.meta.env.VITE_APP_BACKEND_URL}/prod/editservice/${serviceId}`, updatedserviceData)
             .then(res => {
                 console.log(res.data);
-                setNotification('Product updated');
+                setNotification('service updated');
                 setTimeout(() => {
-                    setNotification(null); 
+                    setNotification(null);
                 }, 10000);
             })
             .catch(err => {
@@ -41,10 +41,10 @@ function ViewProducts() {
             });
     };
 
-    const handleDelete = (productID) => {
-        axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/prod/deleteProduct/${productID}`)
+    const handleDelete = (serviceID) => {
+        axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/prod/deleteservice/${serviceID}`)
             .then(res => {
-                setNotification('Product Deleted');
+                setNotification('service Deleted');
                 setTimeout(() => {
                     setNotification(null);
                 }, 10000);
@@ -63,24 +63,26 @@ function ViewProducts() {
                     </div>
                 </div>
             )}
-            {editProduct && (
+            {editservice && (
                 <>
-                
-                    <h2 className='w-full px-4 text-slate-950 bg-white flex justify-start items-center font-normal rounded-t-lg py-1'>EDIT PRODUCTS</h2>
+
+                    <h2 className='w-1/5 my-1 mx-2 text-center font-semibold text-white rounded-r-lg px-2 text-2xl bg-purple-500'>
+                        Edit Servivce
+                    </h2>
                     <div className="w-full bg-white flex flex-col justify-center items-center p-4 rounded-b-lg shadow-lg mb-4">
                         <form className='w-full' onSubmit={handleEdit}>
                             <div className='grid grid-cols-2 gap-2'>
-                                <label htmlFor="productName">Product ID</label>
-                                <input type="text" name='_id' value={editProduct._id} className='rounded-lg border px-2 py-1' readOnly />
-                                <label htmlFor="productName">Product Name</label>
-                                <input type="text" name='productName' value={editProduct.productName} className='rounded-lg border px-2 py-1' onChange={(e) => setEditProduct({ ...editProduct, productName: e.target.value })} />
-                                <label htmlFor="productPrice">Product Price</label>
-                                <input type="number" name='productPrice' value={editProduct.productPrice} className='rounded-lg border px-2 py-1' onChange={(e) => setEditProduct({ ...editProduct, productPrice: e.target.value })} />
-                                <label htmlFor="productCategory">Product Category</label>
-                                <input type="text" name='productCategory' value={editProduct.productCategory} className='rounded-lg border px-2 py-1' onChange={(e) => setEditProduct({ ...editProduct, productCategory: e.target.value })} />
-                                <label htmlFor="file">Product Image</label>
+                                <label htmlFor="serviceName">Service ID</label>
+                                <input type="text" name='_id' value={editservice._id} className='rounded-lg border px-2 py-1' readOnly />
+                                <label htmlFor="serviceName">Service Name</label>
+                                <input type="text" name='serviceName' value={editservice.serviceName} className='rounded-lg border px-2 py-1' onChange={(e) => setEditservice({ ...editservice, serviceName: e.target.value })} />
+                                <label htmlFor="serviceDescription">Service Description</label>
+                                <textarea type="number" name='serviceDescription' value={editservice.serviceDescription} className='rounded-lg border px-2 py-1' onChange={(e) => setEditservice({ ...editservice, serviceDescription: e.target.value })} />
+                                <label htmlFor="serviceCategory">Service Category</label>
+                                <input type="text" name='serviceCategory' value={editservice.serviceCategory} className='rounded-lg border px-2 py-1' onChange={(e) => setEditservice({ ...editservice, serviceCategory: e.target.value })} />
+                                <label htmlFor="file">Service Image</label>
                                 <div className='px-4 py-2 flex justify-end items-center'>
-                                    <img src={`${editProduct.image}`} className='w-2/5 h-36 rounded-lg' alt={`Product`} />
+                                    <img src={`${editservice.image}`} className='w-2/5 h-36 rounded-lg' alt={`service`} />
                                 </div>
                                 <input type="file" name='file' />
                             </div>
@@ -92,33 +94,33 @@ function ViewProducts() {
                     </div>
                 </>
             )}
-            <div className='w-full text-slate-950 py-2 px-2 bg-white font-bold '>
-                PRODUCTS
-            </div>
+            <h2 className='w-1/5 mx-2 my-1 text-center font-semibold text-white rounded-r-lg px-2 text-2xl bg-purple-500'>
+                SERVICES
+            </h2>
             <table className='table-auto w-full'>
                 <thead>
                     <tr className='text-slate-950 font-light'>
                         <th className='px-4 py-2  font-bold text-gray-500 border '>Image</th>
-                        <th className='px-4 py-2  font-bold text-gray-500 border'>Product Name</th>
-                        <th className='px-4 py-2  font-bold text-gray-500 border'>Price ($)</th>
+                        <th className='px-4 py-2  font-bold text-gray-500 border'>Service Name</th>
+                        <th className='px-4 py-2  font-bold text-gray-500 border'>Description</th>
                         <th className='px-4 py-2  font-bold text-gray-500 border'>Category</th>
                         <th className='px-4 py-2  font-bold text-gray-500 border'></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {productsdata.map((product, index) => (
+                    {servicesData.map((service, index) => (
                         <tr key={index} className='bg-white border-b border-gray-200'>
                             <td className='px-4 py-2 w-1/5'>
-                                <img src={`${product.image}`} className='w-full h-60 ' alt={`Product ${index}`} />
+                                <img src={`${service.image}`} className='w-full h-60 ' alt={`service ${index}`} />
                             </td>
-                            <td className='px-4 py-2 text-center'>{product.productName}</td>
-                            <td className='px-4 py-2 text-center'>{product.productPrice} ($)</td>
-                            <td className='px-4 py-2 text-center'>{product.productCategory}</td>
+                            <td className='px-4 py-2 text-center'>{service.serviceName}</td>
+                            <td className='px-4 py-2 text-center'>{service.serviceDescription} </td>
+                            <td className='px-4 py-2 text-center'>{service.serviceCategory}</td>
                             <td className='h-full flex flex-col justify-center items-center cursor-pointer'>
-                                <Unicons.UilEditAlt width={30} height={30} className="text-green-600 my-10 hover:text-green-500" onClick={() => handleEditClick(product)} />
-                                <Unicons.UilTrashAlt width={30} height={30} className="text-red-500  hover:text-red-600" onClick={() => handleDelete(product._id)} />
+                                <Unicons.UilEditAlt width={30} height={30} className="text-green-600 my-10 hover:text-green-500" onClick={() => handleEditClick(service)} />
+                                <Unicons.UilTrashAlt width={30} height={30} className="text-red-500  hover:text-red-600" onClick={() => handleDelete(service._id)} />
                             </td>
-                           
+
                         </tr>
                     ))}
                 </tbody>
@@ -127,4 +129,4 @@ function ViewProducts() {
     );
 }
 
-export default ViewProducts;
+export default Viewservices;

@@ -36,7 +36,9 @@ export default function Products() {
                 <Sidebar />
                 <div className='w-full flex flex-col justify-start items-center'>
                     <Topbar />
-                    <Heading heading={'PRODUCTS PALLET'} current={'Products'} previous={'Dashboard'} />
+                    <h2 className='w-full text-center font-bold text-purple-500 text-3xl'>
+                        SERVICES
+                    </h2>
                     <AddProducts />
                     <ViewProducts />
                 </div>

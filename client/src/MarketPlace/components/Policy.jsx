@@ -9,7 +9,7 @@ function Policy() {
             </div>
             <div className='w-full py-2 font-medium text-gray-500 flex flex-col border-2 border-gray-300 justify-center items-center'>
                 <Unicons.UilTruck width={50} height={50} className="text-purple-500  " />
-                On-Time Delivery
+                On-Time Response
             </div>
             <div className='w-full py-2 font-medium text-gray-500 flex flex-col border-2 border-gray-300 justify-center items-center'>
                 <Unicons.UilCommentHeart width={50} height={50} className="text-purple-500 " />

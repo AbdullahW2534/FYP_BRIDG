@@ -10,19 +10,14 @@ function ProductCard({ productsdata }) {
         setCheck(!checked);
     }
     return (
-        <div className='w-full md:w-5/6 flex flex-col justify-center items-center shadow-lg ' >
-            <img src={`${productsdata.image}`} className='w-full h-64 ' alt={`img`} />
+        <div className='w-full md:w-5/6 flex flex-col justify-center items-center shadow-lg py-3' >
+            <img src={`${productsdata.image}`} className='w-32 h-32 ' alt={`img`} />
             <h2 className='w-full text-center font-medium mt-1'>{productsdata.productName}</h2>
-            <h2 className='w-full text-center text-xs mt-1'>Hurry Up..! only <span className='text-sm font-medium text-red-600'>{productsdata.productQuantity}</span> remaining</h2>
+            <h2 className='w-full text-center text-xs mt-1 font-bold text-purple-500'>{productsdata.serviceName}</h2>
             <div className='flex justify-end items-center w-full pt-1 '>
                 <div className='w-1/5 flex justify-center items-center'>
-                    {checked ? <FontAwesomeIcon icon={solidHeart} onClick={handleClick} className="text-red-600 cursor-pointer" /> : <FontAwesomeIcon icon={regularHeart} onClick={handleClick} className="text-red-600 cursor-pointer" />}
+                    {checked ? <FontAwesomeIcon icon={solidHeart} onClick={handleClick} className="text-purple-600 cursor-pointer" /> : <FontAwesomeIcon icon={regularHeart} onClick={handleClick} className="text-purple-600 cursor-pointer" />}
 
-                </div>
-                <div className='w-4/5 flex justify-end items-center'>
-
-                    <Unicons.UilShoppingCartAlt width={20} className="text-gray-500 hover:text-yellow-500 ml-3 mr-1 cursor-pointer" />
-                    <Unicons.UilShoppingBag width={20} className="text-gray-500 hover:text-yellow-500 ml-3 mr-1 cursor-pointer" />
                 </div>
             </div>
 

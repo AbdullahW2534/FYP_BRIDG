@@ -27,6 +27,7 @@ router.post('/uploadGig', upload.single('file'), async (req, res) => {
             keywords: req.body.keywords,
             deliveryTime: req.body.deliveryTime,
             price: req.body.price,
+            category: req.body.category,
             link: req.body.link,
             image: imageUrl,
             user: userId
@@ -59,10 +60,15 @@ router.get('/getGigs', (req, res) => {
 router.get('/getAllGigs', async (req, res) => {
     const searchByTitle = req.query.searchByTitle;
     const searchByAssistant = req.query.searchByAssistant;
+    const searchByCategory = req.query.searchByCategory;
     const filter = {};
 
     if (searchByTitle) {
         filter.title = { $regex: searchByTitle, $options: 'i' };
+    }
+
+    if (searchByCategory) {
+        filter.category = { $regex: searchByCategory, $options: 'i' };
     }
 
     try {
@@ -72,7 +78,6 @@ router.get('/getAllGigs', async (req, res) => {
                 const assistantIds = assistants.map(assistant => assistant._id);
                 filter.user = { $in: assistantIds };
             } else {
-
                 return res.json([]);
             }
         }
@@ -86,6 +91,7 @@ router.get('/getAllGigs', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+
 
 
 

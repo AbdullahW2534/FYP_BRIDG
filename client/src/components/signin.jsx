@@ -24,7 +24,7 @@ export default function SignIn() {
                 console.log(res.data);
                 if (Status === 'Success') {
                     if (role === 'admin') {
-                        navigate('/adminPortal');
+                        navigate('/adminportal/dashboard');
                     }
                     else if (role === 'investor') {
                         navigate("/investor/dashboard");

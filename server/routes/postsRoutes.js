@@ -7,6 +7,7 @@ import upload from "../middleware/multer.js";
 const router = express.Router();
 
 router.post('/uploadPosts', upload.single('file'), async (req, res) => {
+    // console.log(req.body);
     const result = await cloudinary.uploader.upload(req.file.path);
     const imageUrl = result.secure_url;
     postsModel.create({ heading: req.body.heading, auther: req.body.auther, content: req.body.content, image: imageUrl })

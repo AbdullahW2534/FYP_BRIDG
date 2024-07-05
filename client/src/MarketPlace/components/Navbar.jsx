@@ -95,29 +95,29 @@ export default function Navbar({ backgroundImage, heading }) {
         </div>
       </div>
 
-      <div className='bg-white flex justify-between items-center text-sm px-4'>
+      <div className='bg-white flex justify-between items-center text-sm px-3'>
         <Unicons.UilListUl width={40} height={40} className="text-black font-bold mr-2 lg:hidden" onClick={toggleMobileMenu} />
         <div className='py-2 mx-4'>
-          <img src="./logo.png" alt="logo" className="w-36" />
+          <img src="./logo.png" alt="logo" className="w-20" />
         </div>
-        <div className="hidden md:flex justify-evenly flex-1 text-sm">
-          <a href='/' className='flex justify-center items-center'>HOME
-            <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
+        <div className="hidden md:flex justify-start flex-1 text-sm pl-20">
+          <a href='/' className='flex justify-center items-center font-normal mx-4 hover:border-b-2  border-purple-500'>HOME
+           
           </a>
-          <a href='/blogs' className='flex justify-center items-center'>BLOG
-            <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
+          <a href='/blogs' className='flex justify-center items-center font-normal mx-4 hover:border-b-2  border-purple-500'>BLOG
+           
           </a>
-          <a href='/gigs' className='flex justify-center items-center'>GIGS
-            <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
+          <a href='/gigs' className='flex justify-center items-center font-normal mx-4 hover:border-b-2  border-purple-500'>GIGS
+           
           </a>
-          <a href='/about' className='flex justify-center items-center'>ABOUT
-            <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
+          <a href='/about' className='flex justify-center items-center font-normal mx-4 hover:border-b-2  border-purple-500'>ABOUT
+           
           </a>
-          <a href='/contact' className='flex justify-center items-center'>CONTACT
-            <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
+          <a href='/services' className='flex justify-center items-center font-normal mx-4 hover:border-b-2  border-purple-500'>SERVICES
+           
           </a>
-          <a href='/services' className='flex justify-center items-center'>SERVICES
-            <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
+          <a href='/contact' className='flex justify-center items-center font-normal mx-4 hover:border-b-2  border-purple-500'>CONTACT
+           
           </a>
 
 
@@ -125,7 +125,7 @@ export default function Navbar({ backgroundImage, heading }) {
         {isMobileMenuVisible && (
           <div className="flex flex-col md:hidden justify-evenly flex-1 text-sm absolute top-12 right-0 bg-white w-full" >
             <a href='/' className='flex justify-end items-center my-1 '>HOME
-              <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
+             
             </a>
             <a href='/blogs' className='flex justify-end items-center my-1 '>BLOG
               <Unicons.UilAngleDown width={20} className="text-purple-500 ml-3 mr-1" />
@@ -155,7 +155,7 @@ export default function Navbar({ backgroundImage, heading }) {
         </div>
       </div>
       <div className="flex justify-center items-center w-full h-full ">
-        <h2 className="text-6xl font-bold text-white bg-white bg-opacity-10 py-1 px-4 lg:px-20"
+        <h2 className="text-6xl font-bold text-white  text-center  py-1 px-4 lg:px-20"
           data-aos="fade-in"
           data-aos-offset="100"
           data-aos-duration="2000"
@@ -170,4 +170,3 @@ export default function Navbar({ backgroundImage, heading }) {
     </div>
   );
 }
-

@@ -34,8 +34,9 @@ export default function Posts() {
                 <Sidebar />
                 <div className='w-full flex flex-col justify-start items-center'>
                     <Topbar/>
-                    <Heading heading={'MARKETPLACE POSTS'} current={'Posts'} previous={'Dashboard'}/>
-                    
+                    <h2 className='w-full text-center font-bold text-purple-500 text-3xl'>
+                       BLOGS
+                    </h2>
                     <AddPosts/>
                     <ViewPosts/>
                 </div>

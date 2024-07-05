@@ -14,42 +14,32 @@ function Sidebar() {
                 </h2>
             </a>
             <div className='flex flex-col justify-center items-center w-full mt-16'>
-                <a href="/adminportal" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
+                <a href="/adminportal/dashboard" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
                     <Unicons.UilCreateDashboard width={27} height={27} className="text-purple-500 mr-4" />
                     Dashboard
                 </a>
-                <a href="/adminportal/products" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
+                <a href="/adminportal/services" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
                     <Unicons.UilPicture width={27} height={27} className="text-purple-500 mr-4" />
-                    Products
+                    Services
                 </a>
                 <a href="/adminportal/categories" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
-                    <Unicons.UilUserMd width={27} height={27} className="text-purple-500 mr-4" />
+                    <Unicons.UilBookmark width={27} height={27} className="text-purple-500 mr-4" />
                     Categories
                 </a>
-                <a href="/adminportal/products" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
+                <a href="/adminportal/users" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
                     <Unicons.UilUserMd width={27} height={27} className="text-purple-500 mr-4" />
-                    Customers
+                    Users
                 </a>
-                <a href="/" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
+                <a href="/adminportal/gigs" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
                     <Unicons.UilTag width={27} height={27} className="text-purple-500 mr-4" />
-                    Sales
+                    Gigs
                 </a>
-                <a href="/" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
-                    <Unicons.UilSortAmountUp width={27} height={27} className="text-purple-500 mr-4" />
-                    Orders
-                </a>
-                <a href="/" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
-                    <Unicons.UilShip width={27} height={27} className="text-purple-500 mr-4" />
-                    Shipments
-                </a>
+
                 <a href="/adminportal/posts" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
                     <Unicons.UilWallet width={27} height={27} className="text-purple-500 mr-4" />
-                    Posts
+                    Blogs
                 </a>
-                <a href="/" className='w-full pl-7 py-2 text-lg font-normal text-white flex justify-start  items-center'>
-                    <Unicons.UilUsersAlt width={27} height={27} className="text-purple-500 mr-4" />
-                    Team
-                </a>
+
             </div>
 
             {/* <div className='flex justify-center items-cenyter w-full mt-28'>

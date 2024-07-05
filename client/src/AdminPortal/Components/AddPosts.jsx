@@ -14,7 +14,7 @@ export default function AddPosts() {
         event.preventDefault();
         let formData = new FormData(event.target);
         console.log(formData);
-        axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}`/post/uploadPosts``, formData)
+        axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/post/uploadPosts`, formData)
             .then(res => {
                 event.target.reset();
                 setNotification('Post Added'); // Set the notification message
@@ -37,14 +37,11 @@ export default function AddPosts() {
                     </div>
                 )}
 
-                <h2 className='w-full bg-gray-400 text-white flex justify-center items-center font-bold rounded-t-lg py-1'>ADD POSTS
-                    <button onClick={handleToggleForm} className=''>
-                        {showForm ? <Unicons.UilAngleUp width={30} height={30} className="text-white mr-4" /> : <Unicons.UilAngleDown width={30} height={30} className="text-white mr-4" />}
-                    </button>
+                <h2 className='w-1/5 mx-2 my-1 text-center font-semibold text-white rounded-r-lg px-2 text-2xl bg-purple-500'>
+                    ADD BLOGS
                 </h2>
 
-
-                {showForm && (
+                
                     <div className='w-full bg-white flex flex-col justify-center items-center p-4 rounded-b-lg shadow-lg'>
                         <form className='w-full' onSubmit={handleUpload}>
                             <div className='grid grid-cols-2 gap-2'>
@@ -63,8 +60,7 @@ export default function AddPosts() {
                             </div>
                         </form>
                     </div>
-                )}
-
+                
             </div>
         </>
     );

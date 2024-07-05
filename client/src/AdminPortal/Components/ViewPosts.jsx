@@ -33,7 +33,7 @@ export default function ViewPosts() {
                 console.log(res.data);
                 setNotification('Product updated');
                 setTimeout(() => {
-                    setNotification(null); 
+                    setNotification(null);
                 }, 10000);
             })
             .catch(err => {
@@ -65,7 +65,9 @@ export default function ViewPosts() {
             )}
             {editProduct && (
                 <>
-                    <h2 className='w-full bg-gray-400 text-white flex justify-center items-center font-bold rounded-t-lg py-1'>Edit Product</h2>
+                    <h2 className='w-1/5 mx-2 my-1 text-center font-semibold text-white rounded-r-lg px-2 text-2xl bg-purple-500'>
+                        EDIT BLOGS
+                    </h2>
                     <div className="w-full bg-white flex flex-col justify-center items-center p-4 rounded-b-lg shadow-lg mb-4">
                         <form className='w-full' onSubmit={handleEdit}>
                             <div className='grid grid-cols-2 gap-2'>

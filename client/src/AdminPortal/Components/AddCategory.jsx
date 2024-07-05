@@ -7,7 +7,7 @@ export default function AddCategory() {
     const [showForm, setShowForm] = useState(false);
     const [notification, setNotification] = useState(null);
     const handleToggleForm = () => {
-        setShowForm(!showForm); 
+        setShowForm(!showForm);
     };
 
     const handleUpload = (event) => {
@@ -20,9 +20,9 @@ export default function AddCategory() {
         axios.post(`${import.meta.env.VITE_APP_BACKEND_URL}/prod/uploadCategory`, data)
             .then(res => {
                 event.target.reset();
-                setNotification('Category Added'); 
+                setNotification('Category Added');
                 setTimeout(() => {
-                    setNotification(null); 
+                    setNotification(null);
                 }, 10000);
                 console.log(res)
             })
@@ -40,27 +40,24 @@ export default function AddCategory() {
                     </div>
                 )}
 
-                <h2 className='w-full bg-gray-400 text-white flex justify-center items-center font-bold rounded-t-lg py-1'>ADD CATEGORY
-                    <button onClick={handleToggleForm} className=''>
-                        {showForm ? <Unicons.UilAngleUp width={30} height={30} className="text-white mr-4" /> : <Unicons.UilAngleDown width={30} height={30} className="text-white mr-4" />}
-                    </button>
+                <h2 className='w-2/5 mx-2 my-1 text-center font-semibold text-white rounded-r-lg px-2 text-2xl bg-purple-500'>
+                    ADD CATEGORY
                 </h2>
 
 
-                {showForm && (
-                    <div className='w-full bg-white flex flex-col justify-center items-center p-4 rounded-b-lg shadow-lg'>
-                        <form className='w-full' onSubmit={handleUpload}>
-                            <div className='grid grid-cols-2 gap-2'>
-                                <label htmlFor="categoryName">Category Name</label>
-                                <input type="text" name='categoryName' className='rounded-lg border px-2 py-1' />
-                            </div>
-                            <div className='w-full flex justify-end items-center'>
-                                <button type='submit' className='mt-4  w-24 py-1 bg-gray-400 rounded-lg font-bold text-white'>ADD CATEGORY
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                )}
+
+                <div className='w-full bg-white flex flex-col justify-center items-center p-4 rounded-b-lg shadow-lg'>
+                    <form className='w-full' onSubmit={handleUpload}>
+                        <div className='grid grid-cols-2 gap-2'>
+                            <label htmlFor="categoryName">Category Name</label>
+                            <input type="text" name='categoryName' className='rounded-lg border px-2 py-1' />
+                        </div>
+                        <div className='w-full flex justify-end items-center'>
+                            <button type='submit' className='mt-4  w-24 py-1 bg-gray-400 rounded-lg font-bold text-white'>ADD CATEGORY
+                            </button>
+                        </div>
+                    </form>
+                </div>
 
             </div>
         </>

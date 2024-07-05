@@ -70,7 +70,9 @@ export default function ViewCategories() {
             )}
             {editCategory && (
                 <>
-                    <h2 className='w-full bg-gray-400 text-white flex justify-center items-center font-bold rounded-t-lg py-1'>Edit Product</h2>
+                    <h2 className='w-1/5 mx-2 my-1 text-center font-semibold text-white rounded-r-lg px-2 text-2xl bg-purple-500'>
+                        Edit Category 
+                    </h2>
                     <div className="w-full bg-white flex flex-col justify-center items-center p-4 rounded-b-lg shadow-lg mb-4">
                         <form className='w-full' onSubmit={handleEdit}>
                             <div className='grid grid-cols-2 gap-2'>
@@ -90,7 +92,7 @@ export default function ViewCategories() {
             <table className='table-auto w-full'>
                 <thead>
                     <tr className='text-white'>
-                        <th className='px-4 py-2 bg-gray-400'>Product Name</th>
+                        <th className='px-4 py-2 bg-gray-400'>Category Name</th>
                         <th className='px-4 py-2 bg-gray-400'>Edit</th>
                         <th className='px-4 py-2 bg-gray-400 rounded-tr-lg'>Delete</th>
                     </tr>

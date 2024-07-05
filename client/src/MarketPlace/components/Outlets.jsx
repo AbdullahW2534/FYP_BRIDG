@@ -5,7 +5,7 @@ export default function Outlets() {
     return (
         <>
             <div className='w-full flex flex-col justify-center items-center'>
-                <Heading heading={'Stay Tuned'} mainHeading={'Technology Evolates'} />
+                <Heading heading={'STAY TUNED'} mainHeading={'Technology Evolates'} />
                 <div className='flex flex-col sm:flex-row md:flex-row lg:flex-row justify-center items-center w-full h-3/5  p-10'>
                     <img
                         src='./bg-a.jpg'

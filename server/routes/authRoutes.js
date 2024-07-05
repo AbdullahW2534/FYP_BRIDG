@@ -10,20 +10,20 @@ const router = express.Router();
 
 router.post('/register', upload.single('file'), async (req, res) => {
     try {
-        
+
         const existingUser = await userModel.findOne({ email: req.body.email });
         if (existingUser) {
             return res.status(400).json({ message: 'Email already exists' });
         }
 
-        
+
         const result = await cloudinary.uploader.upload(req.file.path);
         const imageUrl = result.secure_url;
 
-        
+
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-       
+
         const newUser = await userModel.create({
             name: req.body.name,
             email: req.body.email,
@@ -152,6 +152,23 @@ router.put('/accountsettings', upload.single('file'), async (req, res) => {
     }
 });
 
+router.get('/getUsers', (req, res) => {
+    userModel.find()
+        .then(users => {
+           
+            const userDetails = users.map(user => ({
+                name: user.name,
+                role: user.role,
+                image: user.image,
+                email: user.email,
+            }));
+            res.json(userDetails);
+        })
+        .catch(error => {
+            console.error('Error Fetching user:', error);
+            res.status(500).json({ message: 'Internal server error' });
+        });
+});
 
 
 export default router;

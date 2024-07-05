@@ -1,5 +1,5 @@
 import express from 'express';
-import productsModel from '../models/Images.js';
+import servicesModel from '../models/services.js';
 import ordersModel from '../models/Order.js';
 import categorysModel from '../models/Categories.js';
 import cloudinary from "../utils/cloudinary.js";
@@ -9,67 +9,69 @@ import upload from "../middleware/multer.js";
 const router = express.Router();
 
 
-router.post('/uploadProducts', upload.single('file'),async (req, res) => {
+router.post('/uploadService', upload.single('file'), async (req, res) => {
 
     const result = await cloudinary.uploader.upload(req.file.path);
     const imageUrl = result.secure_url;
-    productsModel.create({ productName: req.body.productName, productPrice: req.body.productPrice, productCategory: req.body.productCategory,productQuantity:req.body.productQuantity,productColors:req.body.productColors,productSizes:req.body.productSizes, image: imageUrl})
+    console.log(req.body.serviceDescription,"Body");
+    servicesModel.create({ serviceName: req.body.serviceName, serviceDescription: req.body.serviceDescription, serviceCategory: req.body.serviceCategory, image: imageUrl })
         .then(result => res.json(result))
         .catch(err => console.log(err))
 });
 
-router.put('/editProduct/:productId', upload.single('file'), async (req, res) => {
-    const productId = req.params.productId;
+router.put('/editservice/:serviceId', upload.single('file'), async (req, res) => {
+    const serviceId = req.params.serviceId;
     const result = await cloudinary.uploader.upload(req.file.path);
     const imageUrl = result.secure_url;
-    productsModel.findByIdAndUpdate(productId, {
-        productName: req.body.productName,
-        productPrice: req.body.productPrice,
-        productCategory: req.body.productCategory,
+    servicesModel.findByIdAndUpdate(serviceId, {
+        serviceName: req.body.serviceName,
+        servicePrice: req.body.servicePrice,
+        serviceCategory: req.body.serviceCategory,
         image: imageUrl
     }, { new: true })
-        .then(updatedProduct => {
-            if (!updatedProduct) {
-                return res.status(404).json({ message: 'Product not found' });
+        .then(updatedservice => {
+            if (!updatedservice) {
+                return res.status(404).json({ message: 'service not found' });
             }
-            res.json(updatedProduct);
+            res.json(updatedservice);
         })
         .catch(error => {
-            console.error('Error updating product:', error);
+            console.error('Error updating service:', error);
             res.status(500).json({ message: 'Internal server error' });
         });
 });
 
-router.get('/getProducts', (req, res) => {
-    productsModel.find()
-        .then(product => res.json(product))
+router.get('/getServices', (req, res) => {
+    servicesModel.find()
+        .then(service => res.json(service))
         .catch(error => {
-            console.error('Error Fetching product:', error);
+            console.error('Error Fetching service:', error);
             res.status(500).json({ message: 'Internal server error' });
         })
 });
 
-router.post('/deleteProduct/:productId', (req, res) => {
-    const productId = req.params.productId;
-    productsModel.findByIdAndDelete(productId)
-        .then(deletedProduct => {
-            if (!deletedProduct) {
-                return res.status(404).json({ message: 'Product not found' });
+router.post('/deleteservice/:serviceId', (req, res) => {
+    const serviceId = req.params.serviceId;
+    servicesModel.findByIdAndDelete(serviceId)
+        .then(deletedservice => {
+            if (!deletedservice) {
+                return res.status(404).json({ message: 'service not found' });
             }
-            res.json({ message: 'Product deleted successfully', deletedProduct });
+            res.json({ message: 'service deleted successfully', deletedservice });
         })
         .catch(error => {
-            console.error('Error deleting product:', error);
+            console.error('Error deleting service:', error);
             res.status(500).json({ message: 'Internal server error' });
         });
 });
 
-router.post('/order',upload.none(), (req, res) => {
-    console.log("Order",req.body);
-    ordersModel.create({ productName: req.body.productName, productPrice: req.body.productPrice, customerName: req.body.customerName,productColor: req.body.productColor,productSize: req.body.productSize,quantity: req.body.quantity,email:req.body.email})
+router.post('/order', upload.none(), (req, res) => {
+    console.log("Order", req.body);
+    ordersModel.create({ serviceName: req.body.serviceName, servicePrice: req.body.servicePrice, customerName: req.body.customerName, serviceColor: req.body.serviceColor, serviceSize: req.body.serviceSize, quantity: req.body.quantity, email: req.body.email })
         .then(result => {
-            console.log("Order server : ",result);
-            res.json(result)})
+            console.log("Order server : ", result);
+            res.json(result)
+        })
         .catch(err => console.log(err))
 });
 
@@ -79,7 +81,7 @@ router.get('/getOrders/:sessionUser', (req, res) => {
     if (!email) {
         return res.status(400).json({ message: 'Email is required' });
     }
-    
+
     ordersModel.find({ email: email })
         .then(orderDetail => res.json(orderDetail))
         .catch(error => {
@@ -100,7 +102,7 @@ router.get('/getOrderByID/:trackingID', (req, res) => {
 
 
 
-router.post('/uploadCategory', (req,res) => {
+router.post('/uploadCategory', (req, res) => {
     categorysModel.create({ categoryName: req.body.categoryName })
         .then(result => res.json(result))
         .catch(err => console.log(err))

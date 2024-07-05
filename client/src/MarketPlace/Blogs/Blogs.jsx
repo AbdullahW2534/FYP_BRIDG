@@ -20,9 +20,9 @@ export default function Blogs() {
     return (
         <>
             <div className='w-full flex flex-col justify-center items-center'>
-                <Navbar backgroundImage="bg-[url('./assets/images/bg8.jpg')]"  heading={'BLOGS'} />
+                <Navbar backgroundImage="bg-[url('./assets/images/bg8.jpg')]" heading={'BLOGS'} />
                 <div className='w-full flex flex-col justify-center items-center'>
-                    <Heading heading={'FROM THE BLOGS'} mainHeading={'FASHIONS FOR YOU'} />
+                    <Heading heading={'FROM THE BLOGS'} mainHeading={'NEWS FOR YOU'} />
                     <div className='p-10 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-10 items-start justify-center text-black'
                     >
                         {postsData.map(post => {
@@ -35,7 +35,7 @@ export default function Blogs() {
 
                     </div>
                 </div>
-                <Footer/>
+                <Footer />
             </div>
 
 

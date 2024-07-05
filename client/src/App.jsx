@@ -22,6 +22,10 @@ import ViewOrders from "./AssistantPortal/UI/ViewOrders";
 import InvestorOrders from "./InvestorPortal/UI/InvestorOrders";
 import AccountSettingsAssistant from "./AssistantPortal/UI/AccountSettingsAssistant";
 import AccountSettingsInvestor from "./InvestorPortal/UI/AccountSettingsInvestor";
+import Users from "./AdminPortal/Users";
+import AdminGigs from "./AdminPortal/Gigs";
+import About from "./MarketPlace/About/About";
+import Contact from "./MarketPlace/Contact/Contact";
 
 
 function App() {
@@ -31,8 +35,10 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home/>}></Route>
-            <Route path="/products" element={<Pricing />}></Route>
+            <Route path="/services" element={<Pricing />}></Route>
             <Route path="/blogs" element={<Blogs />}></Route>
+            <Route path="/contact" element={<Contact />}></Route>
+            <Route path="/about" element={<About />}></Route>
             <Route path="/signup" element={<Signup />}></Route>
             <Route path="/gigs" element={<Gigs />}></Route>
             <Route path="/signin" element={<SignIn />}></Route>
@@ -44,11 +50,12 @@ function App() {
             <Route path="/assistant/addgig" element={<AddGig />}></Route>
             <Route path="/assistant/viewGigs" element={<ViewGigs />}></Route>
             <Route path="/assistant/viewOrders" element={<ViewOrders />}></Route>
-            <Route path="/adminPortal" element={<AdminPortal />}></Route>
-            <Route path="/adminPortal/products" element={<Products />}></Route>
-            <Route path="/adminportal/customers" element={<Customers/>}></Route>
+            <Route path="/adminportal/dashboard" element={<AdminPortal />}></Route>
+            <Route path="/adminPortal/services" element={<Products />}></Route>
+            <Route path="/adminportal/users" element={<Users/>}></Route>
             <Route path="/adminportal/posts" element={<Posts/>}></Route>
             <Route path="/adminportal/categories" element={<Categories/>}></Route>
+            <Route path="/adminportal/gigs" element={<AdminGigs/>}></Route>
           </Routes>
         </BrowserRouter>
       </div>

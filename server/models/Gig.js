@@ -6,6 +6,7 @@ const gigsSchema = new mongoose.Schema({
     keywords: String, 
     deliveryTime: String,    
     price: String,
+    category: String,
     link: String,
     image: String,
     user: {

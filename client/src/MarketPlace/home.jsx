@@ -26,7 +26,7 @@ export default function Home() {
     return (
         <>
             <div className='w-full h-auto flex flex-col justify-start items-center'>
-                <Navbar backgroundImage="bg-[url('./assets/images/bg.jpg')]"  heading={'Streamline Your Investments'} />
+                <Navbar backgroundImage="bg-[url('./assets/images/main3.jpg')]"  heading={'Streamline Your Investments'} />
                 <Outlets/>
                 <ProductsPalet/>
                 <Policy/>
